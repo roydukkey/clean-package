@@ -1,0 +1,125 @@
+{
+	"name": "clean-package",
+	"description": "Removing configuration keys in 'package.json' before creating an NPM package.",
+	"version": "1.0.0",
+	"author": "roydukkey",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://roydukkey@github.com/roydukkey/clean-package.git"
+	},
+	"homepage": "https://github.com/roydukkey/clean-package#readme",
+	"bugs": {
+		"url": "https://github.com/roydukkey/clean-package/issues"
+	},
+	"keywords": [
+		"npm",
+		"pack",
+		"package",
+		"package.json",
+		"publish",
+		"clean"
+	],
+	"bin": {
+		"clean-package": "./bin/clean-package.js"
+	},
+	"dependencies": {
+		"dot-object": "^2.1.3"
+	},
+	"devDependencies": {
+		"@types/node": "^14.6.1",
+		"eslint": "^7.7.0"
+	},
+	"scripts": {
+		"prepack": "$npm_package_bin_clean_package",
+		"new:pack": "npm pack && $npm_package_bin_clean_package restore",
+		"new:publish": "npm publish && $npm_package_bin_clean_package restore"
+	},
+	"clean-package": {
+		"indent": "\t",
+		"remove": [
+			"clean-package",
+			"eslintConfig",
+			"scripts"
+		]
+	},
+	"eslintConfig": {
+		"env": {
+			"node": true,
+			"es6": true
+		},
+		"parserOptions": {
+			"ecmaVersion": 2018
+		},
+		"rules": {
+			"arrow-parens": [
+				"error",
+				"always"
+			],
+			"arrow-spacing": [
+				"error",
+				{
+					"before": true,
+					"after": true
+				}
+			],
+			"brace-style": [
+				"error",
+				"stroustrup",
+				{
+					"allowSingleLine": false
+				}
+			],
+			"comma-spacing": [
+				"error",
+				{
+					"before": false,
+					"after": true
+				}
+			],
+			"curly": [
+				"error"
+			],
+			"comma-dangle": [
+				"error",
+				"never"
+			],
+			"key-spacing": [
+				"error"
+			],
+			"object-curly-spacing": [
+				"error",
+				"always"
+			],
+			"quotes": [
+				"error",
+				"single"
+			],
+			"semi": [
+				"error"
+			],
+			"sort-imports": [
+				"error",
+				{
+					"ignoreCase": false,
+					"ignoreDeclarationSort": false,
+					"ignoreMemberSort": false,
+					"memberSyntaxSortOrder": [
+						"single",
+						"multiple",
+						"all",
+						"none"
+					]
+				}
+			],
+			"space-before-blocks": [
+				"error",
+				"always"
+			],
+			"space-before-function-paren": [
+				"error",
+				"always"
+			]
+		}
+	}
+}

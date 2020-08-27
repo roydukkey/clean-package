@@ -1,0 +1,17 @@
+# User-specific files
+.DS_Store
+*.editorconfig
+*.env
+*.user
+*.vs
+
+# Package Managers
+node_modules
+npm-debug.log
+
+# Build Artifacts
+*.lock.json
+*-lock.json
+*.backup
+*.cache
+*.tgz
