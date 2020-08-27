@@ -15,7 +15,7 @@ npm install clean-package --save-dev
 
 ## Integrated Usage
 
-The `clean-package` tool works directly on the 'package.json' file, to avoid breaking the NPM lifecycle. This allow you to add a script to the 'package.json' to clean the file during packing.
+The `clean-package` tool works directly on the 'package.json' file, to avoid breaking the NPM lifecycle. This allows you to add a script to the 'package.json' to clean the file during packing.
 
 ```json
 {
@@ -111,13 +111,13 @@ clean-package [<backup-path>] [<option>...]
 
 where <option> is one of:
 
-  -i,  --indent <value>                 Specify the indentation overriding existing configuration.
+  -i,  --indent <value>                 Specify the indentation, overriding existing configuration.
 
-  -rm, --remove <key>...                Specify the keys to remove overriding existing configuration.
+  -rm, --remove <key>...                Specify the keys to remove, overriding existing configuration.
 
        --removeAdd <key>...             Same as --remove without overriding existing configuration.
 
-  -r,  --replace <key>=<value>...       Specify the keys to remove overriding existing configuration.
+  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding existing configuration.
 
        --replaceAdd <key>=<value>...    Same as --replace without overriding existing configuration.
 ```
@@ -130,7 +130,7 @@ alias: r
 
 ### How do I remove package scripts and use `clean-package restore`?
 
-If you're integrating `clean-package` into the NPM lifecycle, removing the all the `package.json` scripts with `clean-package` will also remove them from the current execution. This is just how NPM works.
+If you're integrating `clean-package` into the NPM lifecycle, removing all the `package.json` scripts with `clean-package` will also remove them from the current execution. This is just how NPM works.
 
 For example, this configuration will remove the `postpack` script before it is every requested by `npm pack` or `npm publish`, thereby effectively removing the event from the executing lifecycle.
 
