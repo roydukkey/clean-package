@@ -9,7 +9,7 @@ This `clean-package` tool is used for removing development configuration from 'p
 ## Install
 
 ```bash
-npm install clean-package --save
+npm install clean-package --save-dev
 ```
 
 
