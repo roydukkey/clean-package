@@ -1,7 +1,7 @@
 {
 	"name": "clean-package",
 	"description": "Removing configuration keys in 'package.json' before creating an NPM package.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "roydukkey",
 	"license": "MIT",
 	"repository": {
