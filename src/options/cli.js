@@ -66,9 +66,12 @@ if (!options.isRestore) {
 				options[optionKey].push(jsonPrimitive(value));
 			}
 
-			else if (value.includes('=')) {
+			else {
 				const index = value.indexOf('=');
-				options[optionKey][value.substring(0, index)] = jsonPrimitive(value.substring(index + 1));
+
+				if (index >= 1 && index < value.length - 1) {
+					options[optionKey][value.substring(0, index)] = jsonPrimitive(value.substring(index + 1));
+				}
 			}
 
 		}
