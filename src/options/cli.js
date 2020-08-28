@@ -82,10 +82,8 @@ if (!options.isRestore) {
 // Return abstracted primitive values from a string
 function jsonPrimitive (value) {
 	return Number(value) ||
-		[
-			['true', true],
-			['false', false],
-			['null', null]
-		].find(([key]) => key === value)[1] ||
-		value;
+		value === 'true' ? true
+			: value === 'false' ? false
+				: value === 'null' ? null
+					: value;
 }
