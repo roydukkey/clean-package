@@ -132,7 +132,7 @@ alias: r
 
 If you're integrating `clean-package` into the NPM lifecycle, removing all the `package.json` scripts with `clean-package` will also remove them from the current execution. This is just how NPM works.
 
-For example, this configuration will remove the `postpack` script before it is every requested by `npm pack` or `npm publish`, thereby effectively removing the event from the executing lifecycle.
+For example, this configuration will remove the `postpack` script before it is ever requested by `npm pack` or `npm publish`, thereby effectively removing the event from the executing lifecycle.
 
 ```json
 {
@@ -149,7 +149,7 @@ For example, this configuration will remove the `postpack` script before it is e
 }
 ```
 
-There are multiple ways to work around this (more than are offered here). One solution might be to manual run the command with `npx clean-package restore`. Another might be to define a custom script that would call `pack` and `clean-package` in sequence:
+There are multiple ways to work around this (more than are offered here). One solution might be to manually run the command with `npx clean-package restore`. Another might be to define a custom script that would call `pack` and `clean-package` in sequence:
 
 ```json
 {
