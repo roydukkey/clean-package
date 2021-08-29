@@ -26,8 +26,10 @@ let optionKey;
 
 module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 
+	// Process option flag
 	if (value.startsWith('-')) {
 
+		// Add command to flag, to restrict options to particular command.
 		if (options.isRestore) {
 			value += '@restore';
 		}
@@ -64,6 +66,7 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 
 	}
 
+	// Add value following a valid option flag
 	else if (optionKey !== undefined) {
 
 		if (optionKey === 'config') {
