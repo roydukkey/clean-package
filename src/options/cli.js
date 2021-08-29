@@ -50,6 +50,10 @@ if (!options.isRestore) {
 					options[optionKey] = {};
 					break;
 
+				case '--config': case '-c':
+					optionKey = 'config';
+					break;
+
 				default:
 					optionKey = undefined;
 			}
@@ -58,7 +62,12 @@ if (!options.isRestore) {
 
 		else if (optionKey !== undefined) {
 
-			if (options[optionKey] === undefined) {
+			if (optionKey === 'config') {
+				cliOnlyOptions.config = value;
+				optionKey = undefined;
+			}
+
+			else if (options[optionKey] === undefined) {
 				options[optionKey] = jsonPrimitive(value);
 			}
 

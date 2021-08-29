@@ -4,48 +4,48 @@ const fs = require('fs');
 const path = require('path');
 
 
-// Require 'package.json'
-const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
+module.exports = (cliConfigPath) => {
 
+	// Require 'package.json'
+	const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
 
-// Attempt to find config from 'package.json'
-let options = packageJson['clean-package'];
+	// Attempt to find config from either (1) the CLI provided path or (2) the 'package.json'
+	let options = cliConfigPath
+		? readConfigFromFile(cliConfigPath, true)[0]
+		: packageJson['clean-package'];
 
-
-// If package doesn't contain configuration, search 'clean-package.config.json', then 'clean-package.config.js'
-if (!options) {
-	for (const file of ['./clean-package.config.json', './clean-package.config.js']) {
-		if ([options] = readConfigFromFile(file)) {
-			break;
+	// If package doesn't contain configuration, search 'clean-package.config.json', then 'clean-package.config.js'
+	if (!options) {
+		for (const file of ['./clean-package.config.json', './clean-package.config.js']) {
+			if ([options] = readConfigFromFile(file)) {
+				break;
+			}
 		}
 	}
-}
 
+	// If a string was passed assume it is a config path
+	else if (typeof options === 'string') {
+		[options] = readConfigFromFile(options, true);
+	}
 
-// If a string was passed assume it is a config path
-else if (typeof options === 'string') {
-	[options] = readConfigFromFile(options, true);
-}
+	// Merge into default configuration, keeping required configuration fields
+	options = Object.assign({
+		backupPath: './package.json.backup',
+		indent: 2,
+		remove: [
+			'clean-package'
+		]
+	}, options, {
+		sourcePath
+	});
 
+	// Resolve backup file location
+	options.backupPath = path.resolve(process.cwd(), options.backupPath);
 
-// Merge into default configuration, keeping required configuration fields
-options = Object.assign({
-	backupPath: './package.json.backup',
-	indent: 2,
-	remove: [
-		'clean-package'
-	]
-}, options, {
-	sourcePath
-});
+	// Export options and 'package.json' content
+	return [options, packageJson];
 
-
-// Resolve backup file location
-options.backupPath = path.resolve(process.cwd(), options.backupPath);
-
-
-// Export options and 'package.json' content
-module.exports = [options, packageJson];
+};
 
 
 /**
