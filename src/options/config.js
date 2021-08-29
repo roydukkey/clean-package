@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const extend = require('./extend');
 
 
 module.exports = (cliConfigPath) => {
@@ -26,6 +27,11 @@ module.exports = (cliConfigPath) => {
 	// If a string was passed assume it is a config path
 	else if (typeof options === 'string') {
 		[options] = readConfigFromFile(options, true);
+	}
+
+	// Extend config for as long as the property remains.
+	while (options.extends) {
+		options = extend(options);
 	}
 
 	// Merge into default configuration, keeping required configuration fields
