@@ -101,11 +101,13 @@ Deeper keys can be accessed using a dot (e.g., `'key.keyInsideKey'`). Likewise, 
 
 ##### replace
 
-Default: `null`
-
 An `Object` specifying the keys to be replaced in the cleaned `package.json`; otherwise, `null` when nothing is to be replaced.
 
 Deeper keys and arrays are accessible in the same manner. Additionally, the replaced keys may receive any valid JSON value, including objects.
+
+##### extends
+
+A `String` or `String[]` specifying the name/s of a shareable configuration.
 
 ## Command Line Usage
 
@@ -125,16 +127,20 @@ where <option> is one of:
   -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
 
        --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
+
+       --extends <name>...              Specify the name to a shareable configuration.
 ```
 
 ```
-clean-package restore [<backup-path>] [<option>]
+clean-package restore [<backup-path>] [<option>...]
 
 alias: r
 
-where <option> is:
+where <option> is one of:
 
   -c,  --config <path>                  Specify the path to a configuration file.
+
+       --extends <name>...              Specify the name to a shareable configuration.
 ```
 
 ### How do I remove package scripts and use `clean-package restore`?
