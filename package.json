@@ -31,7 +31,8 @@
 		"eslint": "^7.7.0"
 	},
 	"scripts": {
-		"prepack": "./bin/clean-package.js",
+		"test": "./bin/clean-package.js",
+		"prepack": "npm test",
 		"new:pack": "npm pack && ./bin/clean-package.js restore",
 		"new:publish": "npm publish && ./bin/clean-package.js restore"
 	},
