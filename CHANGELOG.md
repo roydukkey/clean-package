@@ -1,5 +1,12 @@
 # Changelog
 
+[//]: # (>>   The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings   <<)
+[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v1.0.1...master   <<)
+
+## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v1.0.1...master)
+
+* Add options to supply a custom config path [#1](https://github.com/roydukkey/clean-package/issues/5)
+
 ## [1.0.1](https://github.com/roydukkey/clean-package/compare/v1.0.0...v1.0.1)
 
 * Fix CLI JSON primitive transformer

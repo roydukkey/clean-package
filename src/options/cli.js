@@ -21,65 +21,80 @@ if (argv.length && !argv[0].startsWith('-')) {
 module.exports = [options, {}];
 
 
-// If not using 'restore' command, get other optional arguments
-if (!options.isRestore) {
-	let optionKey;
+// Get other optional arguments
+let optionKey;
 
-	module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
+module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 
-		if (value.startsWith('-')) {
+	// Process option flag
+	if (value.startsWith('-')) {
 
-			switch (value) {
-				case '--indent': case '-i':
-					optionKey = 'indent';
-					break;
-
-				case '--removeAdd':
-					cliOnlyOptions.removeAdd = true;
-
-				case '--remove': case '-rm':
-					optionKey = 'remove';
-					options[optionKey] = [];
-					break;
-
-				case '--replaceAdd':
-					cliOnlyOptions.replaceAdd = true;
-
-				case '--replace': case '-r':
-					optionKey = 'replace';
-					options[optionKey] = {};
-					break;
-
-				default:
-					optionKey = undefined;
-			}
-
+		// Add command to flag, to restrict options to particular command.
+		if (options.isRestore) {
+			value += '@restore';
 		}
 
-		else if (optionKey !== undefined) {
+		switch (value) {
+			case '--config': case '-c':
+			case '--config@restore': case '-c@restore':
+				optionKey = 'config';
+				break;
 
-			if (options[optionKey] === undefined) {
-				options[optionKey] = jsonPrimitive(value);
-			}
+			case '--indent': case '-i':
+				optionKey = 'indent';
+				break;
 
-			else if (Array.isArray(options[optionKey])) {
-				options[optionKey].push(jsonPrimitive(value));
-			}
+			case '--removeAdd':
+				cliOnlyOptions.removeAdd = true;
 
-			else {
-				const index = value.indexOf('=');
+			case '--remove': case '-rm':
+				optionKey = 'remove';
+				options[optionKey] = [];
+				break;
 
-				if (index >= 1 && index < value.length - 1) {
-					options[optionKey][value.substring(0, index)] = jsonPrimitive(value.substring(index + 1));
-				}
-			}
+			case '--replaceAdd':
+				cliOnlyOptions.replaceAdd = true;
 
+			case '--replace': case '-r':
+				optionKey = 'replace';
+				options[optionKey] = {};
+				break;
+
+			default:
+				optionKey = undefined;
 		}
 
-		return [options, cliOnlyOptions];
+	}
 
-	}, module.exports);
-}
+	// Add value following a valid option flag
+	else if (optionKey !== undefined) {
+
+		if (optionKey === 'config') {
+			cliOnlyOptions.config = value;
+			optionKey = undefined;
+		}
+
+		else if (options[optionKey] === undefined) {
+			options[optionKey] = jsonPrimitive(value);
+		}
+
+		else if (Array.isArray(options[optionKey])) {
+			options[optionKey].push(jsonPrimitive(value));
+		}
+
+		else {
+			const index = value.indexOf('=');
+
+			if (index >= 1 && index < value.length - 1) {
+				options[optionKey][value.substring(0, index)] = jsonPrimitive(value.substring(index + 1));
+			}
+		}
+
+	}
+
+	return [options, cliOnlyOptions];
+
+}, module.exports);
 
 
 // Return abstracted primitive values from a string
