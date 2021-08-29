@@ -31,9 +31,9 @@
 		"eslint": "^7.7.0"
 	},
 	"scripts": {
-		"prepack": "$npm_package_bin_clean_package",
-		"new:pack": "npm pack && $npm_package_bin_clean_package restore",
-		"new:publish": "npm publish && $npm_package_bin_clean_package restore"
+		"prepack": "./bin/clean-package.js",
+		"new:pack": "npm pack && ./bin/clean-package.js restore",
+		"new:publish": "npm publish && ./bin/clean-package.js restore"
 	},
 	"clean-package": {
 		"indent": "\t",
