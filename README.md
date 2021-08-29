@@ -46,7 +46,7 @@ Options can be configured in `clean-package.config.json` at the root of your pro
 
 Alternatively, you can choose to specify your configuration from within `package.json` using the `clean-package` key like so:
 
-```json
+```js
 {
   "name": "my-package",
   "version": "1.0.0",
@@ -56,7 +56,10 @@ Alternatively, you can choose to specify your configuration from within `package
       "eslintConfig",
       "jest"
     ]
-  }
+  },
+
+  // Or, a file path to a configuration.
+  "clean-package": "./build/clean-package.config.js"
 }
 ```
 
@@ -111,15 +114,17 @@ clean-package [<backup-path>] [<option>...]
 
 where <option> is one of:
 
-  -i,  --indent <value>                 Specify the indentation, overriding existing configuration.
+  -i,  --indent <value>                 Specify the indentation, overriding configuration from file.
 
-  -rm, --remove <key>...                Specify the keys to remove, overriding existing configuration.
+  -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file.
 
-       --removeAdd <key>...             Same as --remove without overriding existing configuration.
+       --removeAdd <key>...             Same as --remove without overriding configuration from file.
 
-  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding existing configuration.
+  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
 
-       --replaceAdd <key>=<value>...    Same as --replace without overriding existing configuration.
+       --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
+
+  -c,  --config <path>                  Specify the path to a configuration file.
 ```
 
 ```
