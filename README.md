@@ -114,6 +114,8 @@ clean-package [<backup-path>] [<option>...]
 
 where <option> is one of:
 
+  -c,  --config <path>                  Specify the path to a configuration file.
+
   -i,  --indent <value>                 Specify the indentation, overriding configuration from file.
 
   -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file.
@@ -123,14 +125,16 @@ where <option> is one of:
   -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
 
        --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
-
-  -c,  --config <path>                  Specify the path to a configuration file.
 ```
 
 ```
-clean-package restore [<backup-path>]
+clean-package restore [<backup-path>] [<option>]
 
 alias: r
+
+where <option> is:
+
+  -c,  --config <path>                  Specify the path to a configuration file.
 ```
 
 ### How do I remove package scripts and use `clean-package restore`?

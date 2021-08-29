@@ -37,6 +37,7 @@
 		"new:publish": "npm publish && ./bin/clean-package.js restore"
 	},
 	"clean-package": {
+		"backupPath": "./src/test.json.backup",
 		"indent": "\t",
 		"remove": [
 			"clean-package",
