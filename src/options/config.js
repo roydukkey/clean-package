@@ -29,10 +29,7 @@ module.exports = (cliConfigPath) => {
 		[options] = readConfigFromFile(options, true);
 	}
 
-	// Extend config for as long as the property remains.
-	while (options.extends) {
-		options = extend(options);
-	}
+	options = extend(options);
 
 	// Merge into default configuration, keeping required configuration fields
 	options = Object.assign({

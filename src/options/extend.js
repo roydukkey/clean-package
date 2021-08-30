@@ -1,10 +1,30 @@
 'use strict';
 
-module.exports = (childConfig) => {
 
-	const parentConfig = require(childConfig.extends);
+module.exports = (options) => {
+	if (options.extends) {
+		guaranteeArray(options);
 
-	delete childConfig.extends;
+		while (options.extends.length > 0) {
+			options = applyPackage(options.extends.pop(), options);
+		}
+
+		delete options.extends;
+	}
+
+	return options;
+};
+
+
+function applyPackage (packageName, childConfig) {
+	const parentConfig = require(packageName);
+
+	// Handle extends before merging other options
+	if (parentConfig.extends) {
+		guaranteeArray(parentConfig);
+		childConfig.extends.unshift(...parentConfig.extends);
+		delete parentConfig.extends;
+	}
 
 	// Shallow merge options
 	const mergedConfig = Object.assign({}, parentConfig, childConfig);
@@ -19,5 +39,11 @@ module.exports = (childConfig) => {
 	}
 
 	return mergedConfig;
-
 };
+
+
+function guaranteeArray (options) {
+	if (typeof options.extends === 'string') {
+		options.extends = [options.extends];
+	}
+}
