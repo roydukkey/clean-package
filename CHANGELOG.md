@@ -5,7 +5,9 @@
 
 ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v1.0.1...master)
 
-* Add options to supply a custom config path [#1](https://github.com/roydukkey/clean-package/issues/5)
+* Add `--config` option to supply a custom config path [#1](https://github.com/roydukkey/clean-package/issues/1)
+* Add `--extends` option for extending sharable configurations [#5](https://github.com/roydukkey/clean-package/issues/5)
+* Add `--print-config` option to print the combine configuration without executing command
 
 ## [1.0.1](https://github.com/roydukkey/clean-package/compare/v1.0.0...v1.0.1)
 
