@@ -85,6 +85,11 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 				options[optionKey] = {};
 				break;
 
+			case '--version': case '-v':
+			case '--version@restore': case '-v@restore':
+				cliOnlyOptions.printVersion = true;
+				break;
+
 			default:
 				optionKey = undefined;
 		}
