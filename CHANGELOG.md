@@ -9,6 +9,7 @@
 * Add `--extends` option for extending sharable configurations [#5](https://github.com/roydukkey/clean-package/issues/5)
 * Add `--print-config` option to print the combine configuration without executing command
 * Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
+* Add `--version` option to print the version number [#10](https://github.com/roydukkey/clean-package/issues/10)
 
 ## [1.0.1](https://github.com/roydukkey/clean-package/compare/v1.0.0...v1.0.1)
 
