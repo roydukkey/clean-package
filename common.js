@@ -12,6 +12,7 @@ module.exports = {
 		'clean-package',
 		'eslintConfig',
 		'jest',
+		'lint-staged', // https://github.com/okonet/lint-staged
 		'mocha',
 		'pre-commit' // https://github.com/observing/pre-commit
 	]
