@@ -57,6 +57,7 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 			case '--print-config':
 			case '--print-config@restore':
 				cliOnlyOptions.printConfig = true;
+				break;
 
 			case '--extends':
 			case '--extends@restore':
