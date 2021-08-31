@@ -22,6 +22,6 @@ if (!cliOnlyOptions.printVersion) {
 		Object.assign(options.replace, configOptions.replace, cliOptions.replace);
 	}
 
-	module.exports = [cliOnlyOptions.printConfig, isRestore, options, packageJson];
+	module.exports.push(cliOnlyOptions.printConfig, isRestore, options, packageJson);
 
 }
