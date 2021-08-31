@@ -1,12 +1,15 @@
 'use strict';
 
-const [isRestore, options, packageJson, printConfig] = require('./options');
+const [printVersion, printConfig, isRestore, options, packageJson] = require('./options');
 
-
-if (printConfig) {
-	console.log(JSON.stringify(options, null, 2));
+if (printVersion) {
+	console.log(`v${require('../package.json').version}`);
 }
 
+
+else if (printConfig) {
+	console.log(JSON.stringify(options, null, 2));
+}
 
 // Route command to 'restore' otherwise 'clean'
 else {

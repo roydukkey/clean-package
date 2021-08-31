@@ -131,6 +131,8 @@ where <option> is one of:
        --extends <name>...              Specify the name to a shareable configuration.
 
        --print-config                   Print the combined configuration without executing command.
+
+  -v,  --version                        Output the version number
 ```
 
 ```
