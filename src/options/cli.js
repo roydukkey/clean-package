@@ -40,6 +40,10 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 				optionKey = 'config';
 				break;
 
+			case '--print-config':
+			case '--print-config@restore':
+				cliOnlyOptions.printConfig = true;
+
 			case '--indent': case '-i':
 				optionKey = 'indent';
 				break;

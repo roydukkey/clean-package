@@ -129,6 +129,8 @@ where <option> is one of:
        --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
 
        --extends <name>...              Specify the name to a shareable configuration.
+
+       --print-config                   Print the combined configuration without executing command.
 ```
 
 ```
@@ -141,6 +143,8 @@ where <option> is one of:
   -c,  --config <path>                  Specify the path to a configuration file.
 
        --extends <name>...              Specify the name to a shareable configuration.
+
+       --print-config                   Print the combined configuration without executing command.
 ```
 
 ### How do I remove package scripts and use `clean-package restore`?

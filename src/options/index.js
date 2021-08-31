@@ -18,5 +18,4 @@ if (cliOnlyOptions.replaceAdd) {
 }
 
 
-// Export options and 'package.json' content
-module.exports = [options, packageJson];
+module.exports = [options, packageJson, cliOnlyOptions.printConfig];
