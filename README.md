@@ -109,7 +109,7 @@ Deeper keys and arrays are accessible in the same manner. Additionally, the repl
 
 A `String` or `String[]` specifying the name/s of a shareable configuration.
 
-This packages [shares a configuration](https://github.com/roydukkey/clean-package/blob/master/common.js) with common options and can be used by extending `clean-package/common`.
+This package [shares a configuration](https://github.com/roydukkey/clean-package/blob/master/common.js) with common settings that can be extended from `clean-package/common`.
 
 ## Command Line Usage
 

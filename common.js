@@ -1,5 +1,5 @@
 /**
- * This configuration can be extended using the 'extends' property in another configuration file, or using the following command:
+ * This configuration can be extended using the 'extends' property in another configuration file or using the following command:
  *
  *   `clean-package --extends 'clean-package/common'`
  *
