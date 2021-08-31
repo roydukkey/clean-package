@@ -45,12 +45,11 @@ module.exports = (cliOptions, cliConfigPath) => {
 			'clean-package'
 		]
 	}, options, {
-		backupPath: cliOptions.backupPath,
 		sourcePath
 	});
 
 	// Resolve backup file location
-	options.backupPath = resolvePath(options.backupPath);
+	options.backupPath = resolvePath(cliOptions.backupPath || options.backupPath);
 
 	// Delete handled cliOptions
 	delete cliOptions.sourcePath;
