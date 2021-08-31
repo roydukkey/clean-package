@@ -2,6 +2,7 @@
 
 const [printVersion, printConfig, isRestore, options, packageJson] = require('./options');
 
+
 if (printVersion) {
 	console.log(`v${require('../package.json').version}`);
 }
