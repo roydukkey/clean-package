@@ -8,6 +8,7 @@
 * Add `--config` option to supply a custom config path [#1](https://github.com/roydukkey/clean-package/issues/1)
 * Add `--extends` option for extending sharable configurations [#5](https://github.com/roydukkey/clean-package/issues/5)
 * Add `--print-config` option to print the combine configuration without executing command
+* Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
 
 ## [1.0.1](https://github.com/roydukkey/clean-package/compare/v1.0.0...v1.0.1)
 

@@ -2,7 +2,7 @@
 
 
 module.exports = (options) => {
-	if (options.extends) {
+	if (options && options.extends) {
 		guaranteeArray(options);
 
 		while (options.extends.length > 0) {

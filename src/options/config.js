@@ -5,10 +5,10 @@ const path = require('path');
 const extend = require('./extend');
 
 
-module.exports = (cliConfigPath, cliExtends) => {
+module.exports = (cliOptions, cliConfigPath) => {
 
 	// Require 'package.json'
-	const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
+	const [packageJson, sourcePath] = readConfigFromFile(cliOptions.sourcePath || './package.json', true);
 
 	// Attempt to find config from either (1) the CLI provided path or (2) the 'package.json'
 	let options = cliConfigPath
@@ -30,14 +30,15 @@ module.exports = (cliConfigPath, cliExtends) => {
 	}
 
 	// Handle extension packages
-	if (cliExtends) {
-		options.extends = cliExtends;
+	if (cliOptions.extends) {
+		options.extends = cliOptions.extends;
 	}
 
 	options = extend(options);
 
 	// Merge into default configuration, keeping required configuration fields
 	options = Object.assign({
+		sourcePath: undefined,
 		backupPath: './package.json.backup',
 		indent: 2,
 		remove: [
@@ -48,7 +49,12 @@ module.exports = (cliConfigPath, cliExtends) => {
 	});
 
 	// Resolve backup file location
-	options.backupPath = path.resolve(process.cwd(), options.backupPath);
+	options.backupPath = resolvePath(cliOptions.backupPath || options.backupPath);
+
+	// Delete handled cliOptions
+	delete cliOptions.sourcePath;
+	delete cliOptions.backupPath;
+	delete cliOptions.extends;
 
 	// Export options and 'package.json' content
 	return [options, packageJson];
@@ -62,9 +68,13 @@ module.exports = (cliConfigPath, cliExtends) => {
  * @param {*} isRequired - Whether or not the file is required and should fail when not found.
  */
 function readConfigFromFile (filePath, isRequired = false) {
-	filePath = path.resolve(process.cwd(), filePath);
+	filePath = resolvePath(filePath);
 	return [
 		isRequired || fs.existsSync(filePath) ? require(filePath) : null,
 		filePath
 	];
+}
+
+function resolvePath (filePath) {
+	return path.resolve(process.cwd(), filePath);
 }
