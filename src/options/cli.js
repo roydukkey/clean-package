@@ -1,24 +1,22 @@
 'use strict';
 
 
+// Export config options and command-line specific options
+module.exports = [{}, {}];
+
+
 // Determine if 'restore' command is present
-var options = {
-	isRestore: process.argv[2] === 'restore' || process.argv[2] === 'r'
-};
+const isRestore = process.argv[2] === 'restore' || process.argv[2] === 'r';
 
 
 // Remove NodeJS' first two paths and 'restore' command when present
-var argv = process.argv.slice(2 + Number(options.isRestore));
+const argv = process.argv.slice(2 + Number(isRestore));
 
 
 // Get backup path as first optional, positional argument
 if (argv.length && !argv[0].startsWith('-')) {
-	options.backupPath = argv.shift();
+	module.exports[0].backupPath = argv.shift();
 }
-
-
-// Export options and empty object for options which are specific to the command-line
-module.exports = [options, {}];
 
 
 // Get other optional arguments
@@ -30,7 +28,7 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 	if (value.startsWith('-')) {
 
 		// Add command to flag, to restrict options to particular command.
-		if (options.isRestore) {
+		if (isRestore) {
 			value += '@restore';
 		}
 
@@ -105,6 +103,9 @@ module.exports = argv.reduce(([options, cliOnlyOptions], value) => {
 	return [options, cliOnlyOptions];
 
 }, module.exports);
+
+
+module.exports.push(isRestore);
 
 
 // Return abstracted primitive values from a string

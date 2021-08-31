@@ -1,6 +1,6 @@
 'use strict';
 
-const [cliOptions, cliOnlyOptions] = require('./cli');
+const [cliOptions, cliOnlyOptions, isRestore] = require('./cli');
 const [configOptions, packageJson] = require('./config')(cliOnlyOptions.config, cliOptions.extends);
 delete cliOptions.extends;
 
@@ -19,4 +19,4 @@ if (cliOnlyOptions.replaceAdd) {
 }
 
 
-module.exports = [options, packageJson, cliOnlyOptions.printConfig];
+module.exports = [isRestore, options, packageJson, cliOnlyOptions.printConfig];

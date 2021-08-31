@@ -1,6 +1,6 @@
 'use strict';
 
-const [options, packageJson, printConfig] = require('./options');
+const [isRestore, options, packageJson, printConfig] = require('./options');
 
 
 if (printConfig) {
@@ -10,5 +10,5 @@ if (printConfig) {
 
 // Route command to 'restore' otherwise 'clean'
 else {
-	require(options.isRestore ? './restore' : './clean.js')(options, packageJson);
+	require(isRestore ? './restore' : './clean.js')(options, packageJson);
 }
