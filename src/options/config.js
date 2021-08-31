@@ -50,7 +50,7 @@ module.exports = (cliOptions, cliConfigPath) => {
 	});
 
 	// Resolve backup file location
-	options.backupPath = path.resolve(process.cwd(), options.backupPath);
+	options.backupPath = resolvePath(options.backupPath);
 
 	// Delete handled cliOptions
 	delete cliOptions.sourcePath;
@@ -69,9 +69,13 @@ module.exports = (cliOptions, cliConfigPath) => {
  * @param {*} isRequired - Whether or not the file is required and should fail when not found.
  */
 function readConfigFromFile (filePath, isRequired = false) {
-	filePath = path.resolve(process.cwd(), filePath);
+	filePath = resolvePath(filePath);
 	return [
 		isRequired || fs.existsSync(filePath) ? require(filePath) : null,
 		filePath
 	];
+}
+
+function resolvePath (filePath) {
+	return path.resolve(process.cwd(), filePath);
 }
