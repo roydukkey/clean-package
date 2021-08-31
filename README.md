@@ -79,9 +79,15 @@ module.exports = {
 
 ### Options
 
+##### sourcePath
+
+Default: `'./package.json'`
+
+A `String` specifying the location and filename to the `package.json`.
+
 ##### backupPath
 
-Default: `'./package.json.backup'`
+Default: `` `${sourcePath}.backup` ``
 
 A `String` specifying the location and filename to which the `package.json` will be backed up.
 
@@ -112,7 +118,7 @@ A `String` or `String[]` specifying the name/s of a shareable configuration.
 ## Command Line Usage
 
 ```
-clean-package [<backup-path>] [<option>...]
+clean-package [[<source-path>] <backup-path>] [<option>...]
 
 where <option> is one of:
 
@@ -134,7 +140,7 @@ where <option> is one of:
 ```
 
 ```
-clean-package restore [<backup-path>] [<option>...]
+clean-package restore [[<source-path>] <backup-path>] [<option>...]
 
 alias: r
 
