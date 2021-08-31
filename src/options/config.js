@@ -5,7 +5,7 @@ const path = require('path');
 const extend = require('./extend');
 
 
-module.exports = (cliConfigPath) => {
+module.exports = (cliConfigPath, cliExtends) => {
 
 	// Require 'package.json'
 	const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
@@ -27,6 +27,11 @@ module.exports = (cliConfigPath) => {
 	// If a string was passed assume it is a config path
 	else if (typeof options === 'string') {
 		[options] = readConfigFromFile(options, true);
+	}
+
+	// Handle extension packages
+	if (cliExtends) {
+		options.extends = cliExtends;
 	}
 
 	options = extend(options);
