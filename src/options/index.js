@@ -1,8 +1,7 @@
 'use strict';
 
 const [cliOptions, cliOnlyOptions, isRestore] = require('./cli');
-const [configOptions, packageJson] = require('./config')(cliOnlyOptions.config, cliOptions.extends);
-delete cliOptions.extends;
+const [configOptions, packageJson] = require('./config')(cliOptions, cliOnlyOptions.config);
 
 
 // Shallow merge options

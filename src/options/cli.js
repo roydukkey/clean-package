@@ -13,9 +13,25 @@ const isRestore = process.argv[2] === 'restore' || process.argv[2] === 'r';
 const argv = process.argv.slice(2 + Number(isRestore));
 
 
-// Get backup path as first optional, positional argument
-if (argv.length && !argv[0].startsWith('-')) {
-	module.exports[0].backupPath = argv.shift();
+// Get optional, positional arguments
+if (argv.length) {
+
+	// Get backup path as first argument
+	if (!argv[0].startsWith('-')) {
+		module.exports[0].backupPath = argv.shift();
+	}
+
+	// Get source path as second argument
+	if (!argv[0].startsWith('-')) {
+		[
+			module.exports[0].sourcePath,
+			module.exports[0].backupPath
+		] = [
+			module.exports[0].backupPath,
+			argv.shift()
+		];
+	}
+
 }
 
 

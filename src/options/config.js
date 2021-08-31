@@ -5,10 +5,10 @@ const path = require('path');
 const extend = require('./extend');
 
 
-module.exports = (cliConfigPath, cliExtends) => {
+module.exports = (cliOptions, cliConfigPath) => {
 
 	// Require 'package.json'
-	const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
+	const [packageJson, sourcePath] = readConfigFromFile(cliOptions.sourcePath || './package.json', true);
 
 	// Attempt to find config from either (1) the CLI provided path or (2) the 'package.json'
 	let options = cliConfigPath
@@ -30,25 +30,32 @@ module.exports = (cliConfigPath, cliExtends) => {
 	}
 
 	// Handle extension packages
-	if (cliExtends) {
-		options.extends = cliExtends;
+	if (cliOptions.extends) {
+		options.extends = cliOptions.extends;
 	}
 
 	options = extend(options);
 
 	// Merge into default configuration, keeping required configuration fields
 	options = Object.assign({
+		sourcePath: undefined,
 		backupPath: './package.json.backup',
 		indent: 2,
 		remove: [
 			'clean-package'
 		]
 	}, options, {
+		backupPath: cliOptions.backupPath,
 		sourcePath
 	});
 
 	// Resolve backup file location
 	options.backupPath = path.resolve(process.cwd(), options.backupPath);
+
+	// Delete handled cliOptions
+	delete cliOptions.sourcePath;
+	delete cliOptions.backupPath;
+	delete cliOptions.extends;
 
 	// Export options and 'package.json' content
 	return [options, packageJson];
