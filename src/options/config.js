@@ -2,9 +2,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const extend = require('./extend');
 
 
-module.exports = (cliConfigPath) => {
+module.exports = (cliConfigPath, cliExtends) => {
 
 	// Require 'package.json'
 	const [packageJson, sourcePath] = readConfigFromFile('./package.json', true);
@@ -27,6 +28,13 @@ module.exports = (cliConfigPath) => {
 	else if (typeof options === 'string') {
 		[options] = readConfigFromFile(options, true);
 	}
+
+	// Handle extension packages
+	if (cliExtends) {
+		options.extends = cliExtends;
+	}
+
+	options = extend(options);
 
 	// Merge into default configuration, keeping required configuration fields
 	options = Object.assign({

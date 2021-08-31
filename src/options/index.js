@@ -1,7 +1,8 @@
 'use strict';
 
-const [cliOptions, cliOnlyOptions] = require('./cli');
-const [configOptions, packageJson] = require('./config')(cliOnlyOptions.config);
+const [cliOptions, cliOnlyOptions, isRestore] = require('./cli');
+const [configOptions, packageJson] = require('./config')(cliOnlyOptions.config, cliOptions.extends);
+delete cliOptions.extends;
 
 
 // Shallow merge options
@@ -18,5 +19,4 @@ if (cliOnlyOptions.replaceAdd) {
 }
 
 
-// Export options and 'package.json' content
-module.exports = [options, packageJson];
+module.exports = [isRestore, options, packageJson, cliOnlyOptions.printConfig];
