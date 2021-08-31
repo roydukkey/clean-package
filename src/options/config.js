@@ -31,6 +31,10 @@ module.exports = (cliOptions, cliConfigPath) => {
 
 	// Handle extension packages
 	if (cliOptions.extends) {
+		if (options) {
+			options = {};
+		}
+
 		options.extends = cliOptions.extends;
 	}
 
