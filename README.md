@@ -79,15 +79,9 @@ module.exports = {
 
 ### Options
 
-##### sourcePath
-
-Default: `'./package.json'`
-
-A `String` specifying the location and filename to the `package.json`.
-
 ##### backupPath
 
-Default: `` `${sourcePath}.backup` ``
+Default: `'./package.json.backup'`
 
 A `String` specifying the location and filename to which the `package.json` will be backed up.
 
