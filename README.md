@@ -109,6 +109,8 @@ Deeper keys and arrays are accessible in the same manner. Additionally, the repl
 
 A `String` or `String[]` specifying the name/s of a shareable configuration.
 
+This package [shares a configuration](https://github.com/roydukkey/clean-package/blob/master/common.js) with common settings that can be extended from `clean-package/common`.
+
 ## Command Line Usage
 
 ```
@@ -128,7 +130,7 @@ where <option> is one of:
 
        --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
 
-       --extends <name>...              Specify the name to a shareable configuration.
+       --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
 
        --print-config                   Print the combined configuration without executing command.
 
@@ -144,7 +146,7 @@ where <option> is one of:
 
   -c,  --config <path>                  Specify the path to a configuration file.
 
-       --extends <name>...              Specify the name to a shareable configuration.
+       --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
 
        --print-config                   Print the combined configuration without executing command.
 ```
