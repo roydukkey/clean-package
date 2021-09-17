@@ -1,0 +1,25 @@
+{
+	"version": "0.2",
+	"ignorePaths": [
+		"node_modules",
+		".git",
+		".jest",
+		"**/.DS_Store",
+		"*.lock.json",
+		"*-lock.json",
+		"*.lock",
+		"*.tgz"
+	],
+	// Before adding a word, see if there is already a dictionary in which it is contained.
+	// http://github.com/streetsidesoftware/cspell-dicts
+	"words": [
+		"browserslist",
+		"editorconfig",
+		"postpack",
+		"roydukkey",
+		"streetsidesoftware",
+		"toplevel",
+		"tsdoc",
+		"yarpm"
+	]
+}

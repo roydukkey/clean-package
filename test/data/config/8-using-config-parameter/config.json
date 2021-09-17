@@ -1,0 +1,12 @@
+{
+	"backupPath": "./8-xxx.bak",
+	"indent": 8,
+	"remove": [
+		"8a"
+	],
+	"replace": {
+		"8b": {
+			"c": 8
+		}
+	}
+}

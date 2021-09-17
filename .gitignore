@@ -14,4 +14,9 @@ npm-debug.log
 *.lock
 *.backup
 *.cache
+*.jest
 *.tgz
+dist
+
+# Test Artifacts
+*.clean

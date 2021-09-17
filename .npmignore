@@ -4,6 +4,7 @@
 *.env
 *.user
 *.vs
+*.github
 
 # Package Managers
 node_modules
@@ -15,3 +16,8 @@ npm-debug.log
 *.backup
 *.cache
 *.tgz
+.jest
+
+# Source Code
+tsconfig.json
+src
