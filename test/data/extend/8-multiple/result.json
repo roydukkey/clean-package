@@ -1,0 +1,17 @@
+{
+	"backupPath": "./8-multiple.bak",
+	"indent": 8,
+	"remove": [
+		"a",
+		"b",
+		"c",
+		"x",
+		"y",
+		"z"
+	],
+	"replace": {
+		"a": 4,
+		"b": 2,
+		"c": 3
+	}
+}

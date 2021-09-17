@@ -1,0 +1,10 @@
+{
+	"name": "3-xxx",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"indent": "x",
+		"replace": {
+			"name": "3-replacements"
+		}
+	}
+}

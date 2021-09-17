@@ -1,12 +1,16 @@
 {
 	"name": "clean-package",
-	"description": "Removing configuration keys in 'package.json' before creating an NPM package.",
+	"description": "Removes and replaces configuration keys in 'package.json' before creating an NPM package.",
 	"version": "1.0.1",
-	"author": "roydukkey",
+	"author": {
+		"name": "roydukkey",
+		"email": "contact@changelog.me",
+		"url": "http://changelog.me"
+	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://roydukkey@github.com/roydukkey/clean-package.git"
+		"url": "https://roydukkey@github.com/roydukkey/clean-package.git"
 	},
 	"homepage": "https://github.com/roydukkey/clean-package#readme",
 	"bugs": {
@@ -20,107 +24,114 @@
 		"publish",
 		"clean"
 	],
-	"bin": {
-		"clean-package": "./bin/clean-package.js"
+	"bin": "./bin/clean-package.js",
+	"main": "./dist/clean-package.js",
+	"types": "./dist/clean-package.d.ts",
+	"config": {
+		"main": "./src/index.ts",
+		"cli": [
+			"./src/bin.ts",
+			"./dist/cli.js"
+		]
 	},
 	"dependencies": {
 		"dot-object": "^2.1.3"
 	},
 	"devDependencies": {
-		"@types/node": "^14.6.1",
-		"eslint": "^7.7.0"
+		"@babel/core": "^7.15.0",
+		"@babel/preset-env": "^7.15.0",
+		"@babel/preset-typescript": "^7.15.0",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^13.0.4",
+		"@rollup/plugin-replace": "^3.0.0",
+		"@roydukkey/eslint-config": "^1.0.10",
+		"@types/dot-object": "^2.1.2",
+		"@types/jest": "^27.0.1",
+		"@types/node": "^16.7.9",
+		"@typescript-eslint/eslint-plugin": "^4.30.0",
+		"@typescript-eslint/parser": "^4.30.0",
+		"babel-jest": "^27.1.0",
+		"cspell": "^5.9.0",
+		"eslint": "^7.32.0",
+		"eslint-plugin-tsdoc": "^0.2.14",
+		"jest": "^27.1.0",
+		"rollup": "^2.56.3",
+		"rollup-plugin-license": "^2.5.0",
+		"rollup-plugin-ts": "^1.4.1",
+		"terser": "^5.7.2",
+		"typescript": "^4.4.2",
+		"yarpm": "^1.1.1"
 	},
 	"scripts": {
-		"test": "./bin/clean-package.js",
-		"prepack": "npm test",
-		"new:pack": "npm pack && ./bin/clean-package.js restore",
-		"new:publish": "npm publish && ./bin/clean-package.js restore"
+		"clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
+		"lint": "yarpm run lint:spelling && yarpm run lint:es",
+		"lint:es": "eslint --ext js,ts ./",
+		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
+		"build": "yarpm run clean && rollup --config",
+		"minify": "terser $npm_package_main --compress toplevel --mangle toplevel -o $npm_package_main & terser $npm_package_config_cli_1 --compress toplevel --mangle toplevel -o $npm_package_config_cli_1",
+		"test": "jest",
+		"test:bin": "node $npm_package_config_cli_1",
+		"test:build": "yarpm run test -- --setupTestFrameworkScriptFile=./test/setup/prepack.ts",
+		"prepack": "yarpm run lint && yarpm run build && yarpm run minify && yarpm run test:build -- --coverage=false --verbose=false && node $npm_package_config_cli_1",
+		"new:pack": "yarpm pack && node $npm_package_config_cli_1 restore",
+		"new:publish": "yarpm publish && node $npm_package_config_cli_1 restore"
 	},
 	"clean-package": {
 		"indent": "\t",
 		"remove": [
+			"babel",
+			"config",
 			"clean-package",
 			"eslintConfig",
+			"jest",
 			"scripts"
 		]
 	},
+	"jest": {
+		"testEnvironment": "node",
+		"verbose": true,
+		"collectCoverage": true,
+		"coverageDirectory": ".jest/coverage",
+		"cacheDirectory": ".jest/cache",
+		"coveragePathIgnorePatterns": [
+			"./test/data",
+			"./test/setup"
+		],
+		"setupFiles": [
+			"./test/setup/default.ts"
+		]
+	},
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"node": "current"
+					}
+				}
+			],
+			[
+				"@babel/preset-typescript"
+			]
+		],
+		"comments": false
+	},
 	"eslintConfig": {
 		"env": {
-			"node": true,
-			"es6": true
+			"node": true
 		},
-		"parserOptions": {
-			"ecmaVersion": 2018
-		},
+		"ignorePatterns": [
+			"dist/*"
+		],
+		"extends": [
+			"@roydukkey/eslint-config"
+		],
 		"rules": {
-			"arrow-parens": [
-				"error",
-				"always"
-			],
-			"arrow-spacing": [
-				"error",
-				{
-					"before": true,
-					"after": true
-				}
-			],
-			"brace-style": [
-				"error",
-				"stroustrup",
-				{
-					"allowSingleLine": false
-				}
-			],
-			"comma-spacing": [
-				"error",
-				{
-					"before": false,
-					"after": true
-				}
-			],
-			"curly": [
-				"error"
-			],
-			"comma-dangle": [
-				"error",
-				"never"
-			],
-			"key-spacing": [
-				"error"
-			],
-			"object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"quotes": [
-				"error",
-				"single"
-			],
-			"semi": [
-				"error"
-			],
-			"sort-imports": [
-				"error",
-				{
-					"ignoreCase": false,
-					"ignoreDeclarationSort": false,
-					"ignoreMemberSort": false,
-					"memberSyntaxSortOrder": [
-						"single",
-						"multiple",
-						"all",
-						"none"
-					]
-				}
-			],
-			"space-before-blocks": [
-				"error",
-				"always"
-			],
-			"space-before-function-paren": [
-				"error",
-				"always"
-			]
+			"@typescript-eslint/no-require-imports": "off",
+			"@typescript-eslint/no-type-alias": "off",
+			"@typescript-eslint/no-var-requires": "off",
+			"@typescript-eslint/prefer-enum-initializers": "off"
 		}
 	}
 }

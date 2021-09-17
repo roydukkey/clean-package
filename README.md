@@ -120,17 +120,17 @@ where <option> is one of:
 
   -c,  --config <path>                  Specify the path to a configuration file.
 
+  -e,  --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
+
   -i,  --indent <value>                 Specify the indentation, overriding configuration from file.
 
   -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file.
 
-       --removeAdd <key>...             Same as --remove without overriding configuration from file.
+       --remove-add <key>...             Same as --remove without overriding configuration from file.
 
   -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
 
-       --replaceAdd <key>=<value>...    Same as --replace without overriding configuration from file.
-
-       --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
+       --replace-add <key>=<value>...    Same as --replace without overriding configuration from file.
 
        --print-config                   Print the combined configuration without executing command.
 
@@ -146,7 +146,7 @@ where <option> is one of:
 
   -c,  --config <path>                  Specify the path to a configuration file.
 
-       --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
+  -e,  --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
 
        --print-config                   Print the combined configuration without executing command.
 ```

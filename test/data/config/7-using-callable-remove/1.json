@@ -1,0 +1,12 @@
+{
+	"backupPath": "./7-using-callable-remove.bak",
+	"remove": [
+		"a",
+		"b",
+		"c"
+	],
+	"replace": {
+		"a": 1,
+		"b": 2
+	}
+}

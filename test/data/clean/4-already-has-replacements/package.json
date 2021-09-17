@@ -1,0 +1,10 @@
+{
+	"name": "4-already-has-replacements",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"indent": "x",
+		"replace": {
+			"name": "4-already-has-replacements"
+		}
+	}
+}

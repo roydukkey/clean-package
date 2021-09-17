@@ -1,0 +1,11 @@
+{
+	"name": "4-config-override",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"backupPath": "./4-xxx.bak",
+		"indent": "4xxx",
+		"remove": [
+			"4a"
+		]
+	}
+}
