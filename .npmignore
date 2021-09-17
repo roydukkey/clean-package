@@ -4,6 +4,7 @@
 *.env
 *.user
 *.vs
+*.vscode
 *.github
 
 # Package Managers
@@ -21,3 +22,5 @@ npm-debug.log
 # Source Code
 tsconfig.json
 src
+test
+rollup.config.js

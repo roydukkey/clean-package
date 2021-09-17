@@ -1,6 +1,6 @@
 {
 	"name": "clean-package",
-	"description": "Removing configuration keys in 'package.json' before creating an NPM package.",
+	"description": "Removes and replaces configuration keys in 'package.json' before creating an NPM package.",
 	"version": "1.0.1",
 	"author": {
 		"name": "roydukkey",
@@ -70,16 +70,17 @@
 		"build": "yarpm run clean && rollup --config",
 		"minify": "terser $npm_package_main --compress toplevel --mangle toplevel -o $npm_package_main & terser $npm_package_config_cli_1 --compress toplevel --mangle toplevel -o $npm_package_config_cli_1",
 		"test": "jest",
+		"test:bin": "node $npm_package_config_cli_1",
 		"test:build": "yarpm run test -- --setupTestFrameworkScriptFile=./test/setup/prepack.ts",
-		"test:bin": "./bin/clean-package.js",
-		"prepack": "yarpm run lint && yarpm run build && yarpm run minify && yarpm run test:build -- --coverage=false --verbose=false && clean-package",
-		"new:pack": "yarpm pack && $npm_package_bin restore",
-		"new:publish": "yarpm publish && $npm_package_bin restore"
+		"prepack": "yarpm run lint && yarpm run build && yarpm run minify && yarpm run test:build -- --coverage=false --verbose=false && node $npm_package_config_cli_1",
+		"new:pack": "yarpm pack && node $npm_package_config_cli_1 restore",
+		"new:publish": "yarpm publish && node $npm_package_config_cli_1 restore"
 	},
 	"clean-package": {
 		"indent": "\t",
 		"remove": [
 			"babel",
+			"config",
 			"clean-package",
 			"eslintConfig",
 			"jest",
