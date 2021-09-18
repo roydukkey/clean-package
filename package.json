@@ -69,7 +69,7 @@
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"build": "yarpm run clean && rollup --config",
 		"minify": "terser $npm_package_main --compress toplevel --mangle toplevel -o $npm_package_main & terser $npm_package_config_cli_1 --compress toplevel --mangle toplevel -o $npm_package_config_cli_1",
-		"test": "jest",
+		"test": "jest -i",
 		"test:bin": "node $npm_package_config_cli_1",
 		"test:build": "yarpm run test -- --setupTestFrameworkScriptFile=./test/setup/prepack.ts",
 		"prepack": "yarpm run lint && yarpm run build && yarpm run minify && yarpm run test:build -- --coverage=false --verbose=false && node $npm_package_config_cli_1",
@@ -93,6 +93,8 @@
 		"collectCoverage": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache",
+		"testSequencer": "./test/setup/sequencer.js",
+		"bail": true,
 		"coveragePathIgnorePatterns": [
 			"./test/data",
 			"./test/setup"
