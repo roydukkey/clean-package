@@ -134,7 +134,7 @@ where <option> is one of:
 
        --print-config                   Print the combined configuration without executing command.
 
-  -v,  --version                        Output the version number
+  -v,  --version                        Print the version number
 ```
 
 ```

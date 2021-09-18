@@ -37,8 +37,8 @@ packages.forEach(([name, clean, load]) => {
 
 				clean(...load());
 
-				const resulted = false;
-				const expected = existsSync(resolvePath(defaultBackupPath));
+				const resulted = existsSync(resolvePath(defaultBackupPath));
+				const expected = false;
 				expect(resulted).toEqual(expected);
 			});
 
@@ -53,8 +53,8 @@ packages.forEach(([name, clean, load]) => {
 				clean(source, config);
 
 				// Cleaned file exists
-				let resulted: unknown = true;
-				let expected: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(backupPath);
+				let expected: unknown = true;
 				expect(resulted).toEqual(expected);
 
 				// Source matches backed up file
@@ -81,8 +81,8 @@ packages.forEach(([name, clean, load]) => {
 				clean(source, config);
 
 				// Cleaned file exists
-				let resulted: unknown = true;
-				let expected: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(backupPath);
+				let expected: unknown = true;
 				expect(resulted).toEqual(expected);
 
 				// Source matches backed up file
@@ -103,8 +103,8 @@ packages.forEach(([name, clean, load]) => {
 
 				clean(...load());
 
-				const resulted = false;
-				const expected = existsSync(resolvePath(defaultBackupPath));
+				const resulted = existsSync(resolvePath(defaultBackupPath));
+				const expected = false;
 				expect(resulted).toEqual(expected);
 			});
 

@@ -37,13 +37,13 @@ packages.forEach(([name, restore]) => {
 				restore(sourcePath, backupPath);
 
 				// Backed up file does not exist
-				let resulted: unknown = false;
-				let expected: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(backupPath);
+				let expected: unknown = false;
 				expect(resulted).toEqual(expected);
 
 				// Restored file does not  exist
-				resulted = false;
-				expected = existsSync(sourcePath);
+				resulted = existsSync(sourcePath);
+				expected = false;
 				expect(resulted).toEqual(expected);
 			});
 
@@ -56,13 +56,13 @@ packages.forEach(([name, restore]) => {
 				restore(sourcePath, backupPath);
 
 				// Backed up file does not exist
-				let resulted: unknown = false;
-				let expected: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(backupPath);
+				let expected: unknown = false;
 				expect(resulted).toEqual(expected);
 
 				// Restored file exists
-				resulted = true;
-				expected = existsSync(sourcePath);
+				resulted = existsSync(sourcePath);
+				expected = true;
 				expect(resulted).toEqual(expected);
 
 				// Restore
