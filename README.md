@@ -151,6 +151,16 @@ where <option> is one of:
        --print-config                   Print the combined configuration without executing command.
 ```
 
+## Usage in Code
+
+Should you desire, it is also possible to interface this package through code. Simply import the package like any other.
+
+```ts
+import { load, clean, restore, version } from 'clean-package';
+```
+
+## Troubleshooting
+
 ### How do I remove package scripts and use `clean-package restore`?
 
 If you're integrating `clean-package` into the NPM lifecycle, removing all the `package.json` scripts with `clean-package` will also remove them from the current execution. This is just how NPM works.
