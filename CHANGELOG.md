@@ -5,11 +5,12 @@
 
 ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v1.0.1...master)
 
+* Complete rewrite in TypeScript, adding unit tests [#13](https://github.com/roydukkey/clean-package/pull/13)
+* Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
+* Add `clean-package/common` shareable configuration with common settings which can be extended [#10](https://github.com/roydukkey/clean-package/issues/10)
 * Add `--config` option to supply a custom config path [#1](https://github.com/roydukkey/clean-package/issues/1)
 * Add `--extends` option for extending sharable configurations [#5](https://github.com/roydukkey/clean-package/issues/5)
-* Add `clean-package/common` shareable configuration with common settings which can be extended [#10](https://github.com/roydukkey/clean-package/issues/10)
 * Add `--print-config` option to print the combine configuration without executing command
-* Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
 * Add `--version` option to print the version number [#10](https://github.com/roydukkey/clean-package/issues/10)
 
 ## [1.0.1](https://github.com/roydukkey/clean-package/compare/v1.0.0...v1.0.1)
