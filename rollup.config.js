@@ -43,7 +43,7 @@ export default [
 	{
 		input: config.cli[0],
 		external: [
-			'./clean-package'
+			'./main'
 		],
 		output: {
 			file: config.cli[1],
@@ -63,7 +63,7 @@ export default [
 				preventAssignment: false,
 				delimiters: ['\'', '\''],
 				values: {
-					'./index': '"./clean-package"'
+					'./index': '"./main"'
 				}
 			}),
 			...commonPlugins('cli')

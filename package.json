@@ -25,8 +25,8 @@
 		"clean"
 	],
 	"bin": "./bin/clean-package.js",
-	"main": "./dist/clean-package.js",
-	"types": "./dist/clean-package.d.ts",
+	"main": "./dist/main.js",
+	"types": "./dist/main.d.ts",
 	"config": {
 		"main": "./src/index.ts",
 		"cli": [
