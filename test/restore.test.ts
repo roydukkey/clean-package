@@ -31,7 +31,7 @@ packages.forEach(([name, restore]) => {
 			test('Does not fail for missing backup', () => {
 				alterWorkingDirectory(group, '1-default');
 
-				const sourcePath = resolvePath('./package.json.clean');
+				const sourcePath = resolvePath('./package.json.clean.json');
 				const backupPath = resolvePath('./xxx.json');
 
 				restore(sourcePath, backupPath);
@@ -50,7 +50,7 @@ packages.forEach(([name, restore]) => {
 			test('Restores backup', () => {
 				alterWorkingDirectory(group, '1-default');
 
-				const sourcePath = resolvePath('./package.json.clean');
+				const sourcePath = resolvePath('./package.json.clean.json');
 				const backupPath = resolvePath('./backed-up-package.json');
 
 				restore(sourcePath, backupPath);

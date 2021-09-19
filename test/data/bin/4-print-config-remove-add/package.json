@@ -1,0 +1,11 @@
+{
+	"name": "4-print-config-remove-add",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"remove": [
+			"a",
+			"b",
+			"c"
+		]
+	}
+}

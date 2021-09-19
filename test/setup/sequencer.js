@@ -13,7 +13,8 @@ const order = [
 	'load.test.ts',
 	'clean.test.ts',
 	'restore.test.ts',
-	'version.test.ts'
+	'version.test.ts',
+	'bin.test.ts'
 ];
 
 

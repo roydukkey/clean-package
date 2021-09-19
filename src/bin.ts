@@ -19,23 +19,35 @@ else {
 
 	if (options) {
 
+		const { remove, removeAdd, replace, replaceAdd } = options;
+
 		optionsTransform = options;
 
-		// Allow '--remove-add' option to insert values into configuration options, instead of blowing them away entirely.
-		if (options.removeAdd) {
-			optionsTransform.remove = options.remove
-				? distinctArray(options.remove.concat(options.removeAdd))
-				: (keys): string[] => options?.removeAdd
-					? distinctArray(keys.concat(options.removeAdd))
-					: keys;
-		}
+		// Blow away inherited values for `--remove`, and insert values for `--removeAdd`.
+		optionsTransform.remove = (keys): string[] => {
+			if (remove) {
+				keys = remove;
+			}
 
-		// Allow '--replace-add' option to insert values into configuration options, instead of blowing them away entirely.
-		if (options.replaceAdd) {
-			optionsTransform.replace = options.replace
-				? { ...options.replace, ...options.replaceAdd }
-				: (pairs): ReplaceMap => ({ ...pairs, ...options?.replaceAdd });
-		}
+			if (removeAdd) {
+				keys = distinctArray(keys.concat(removeAdd));
+			}
+
+			return keys;
+		};
+
+		// Blow away inherited values for `--replace`, and insert values for `--replaceAdd`.
+		optionsTransform.replace = (pairs): ReplaceMap => {
+			if (replace) {
+				pairs = replace;
+			}
+
+			if (replaceAdd) {
+				pairs = { ...pairs, ...replaceAdd };
+			}
+
+			return pairs;
+		};
 
 	}
 

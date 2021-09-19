@@ -1,0 +1,11 @@
+{
+	"name": "6-print-config-replace-add",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"replace": {
+			"a": 1,
+			"b": 2,
+			"c": 3
+		}
+	}
+}

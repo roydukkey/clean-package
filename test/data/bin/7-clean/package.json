@@ -1,0 +1,11 @@
+{
+	"name": "7-clean",
+	"description": "Mocks the package.json for tests",
+	"clean-package": {
+		"indent": "x",
+		"remove": [
+			"description",
+			"clean-package.indent"
+		]
+	}
+}

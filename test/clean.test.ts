@@ -48,7 +48,7 @@ packages.forEach(([name, clean, load]) => {
 				const [source, config] = load();
 				const backupPath = resolvePath(defaultBackupPath);
 
-				copyFileSync(config.sourcePath, config.sourcePath += '.clean');
+				copyFileSync(config.sourcePath, config.sourcePath += '.clean.json');
 
 				clean(source, config);
 
@@ -76,7 +76,7 @@ packages.forEach(([name, clean, load]) => {
 				const [source, config] = load();
 				const backupPath = resolvePath(defaultBackupPath);
 
-				copyFileSync(config.sourcePath, config.sourcePath += '.clean');
+				copyFileSync(config.sourcePath, config.sourcePath += '.clean.json');
 
 				clean(source, config);
 
