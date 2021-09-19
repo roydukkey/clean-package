@@ -11,7 +11,7 @@ import { copyFileSync, existsSync, readdirSync, renameSync, rmSync } from 'fs';
 const group = 'bin';
 const packages = configurePackages(
 	['src', '../src/bin'],
-	['dist', './clean-package/bin/clean-package.js']
+	['dist', 'clean-package/bin/clean-package.js']
 );
 
 
