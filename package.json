@@ -24,10 +24,11 @@
 		"publish",
 		"clean"
 	],
-	"bin": "./bin/clean-package.js",
+	"bin": "./bin/main.js",
 	"main": "./dist/main.js",
 	"types": "./dist/main.d.ts",
 	"config": {
+		"namespace": "clean-package",
 		"main": "./src/index.ts",
 		"cli": [
 			"./src/bin.ts",
@@ -78,12 +79,10 @@
 	},
 	"clean-package": {
 		"indent": "\t",
+		"extends": "common",
 		"remove": [
-			"babel",
-			"config",
-			"clean-package",
-			"eslintConfig",
-			"jest",
+			"config.main",
+			"config.cli",
 			"scripts"
 		]
 	},

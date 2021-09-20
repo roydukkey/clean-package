@@ -2,7 +2,7 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import { restore as dist } from 'clean-package';
+import { restore as dist } from '../dist/main';
 import { resolve } from 'path';
 import { restore as src } from '../src/restore';
 import { existsSync, renameSync } from 'fs';

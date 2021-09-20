@@ -2,7 +2,7 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import { load as dist } from 'clean-package';
+import { load as dist } from '../dist/main';
 import { resolve } from 'path';
 import { load as src } from '../src/load';
 

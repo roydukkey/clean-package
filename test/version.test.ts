@@ -2,7 +2,7 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import { version as dist } from 'clean-package';
+import { version as dist } from '../dist/main';
 import { version as packageVersion } from '../package.json';
 import { version as src } from '../src/version';
 

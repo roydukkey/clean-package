@@ -5,7 +5,7 @@
 import { config as compileConfig } from './options/config';
 import { defaults } from './spec';
 import { merge } from './options/merge';
-import { name } from '../package.json';
+import { config as packageConfig } from '../package.json';
 import { requireFile } from './util/require';
 import { resolvePath } from './util/path';
 import type { CompiledConfig, Config, JsonDocument, PackageJsonConfig } from './spec';
@@ -24,7 +24,7 @@ export const load = (sourcePath: string = defaults.sourcePath, config?: string |
 	const content = requireFile<PackageJsonConfig>(sourcePath);
 
 	// Compile `package.json` configuration
-	let compiledConfig = compileConfig(sourcePath, content[name as 'clean-package']);
+	let compiledConfig = compileConfig(sourcePath, content[packageConfig.namespace as 'clean-package']);
 
 	// Attempt to load configuration from the provided path
 	if (typeof config === 'string') {

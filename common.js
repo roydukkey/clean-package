@@ -1,3 +1,5 @@
+const { config: { namespace } } = require('./package.json');
+
 /**
  * This configuration can be extended using the 'extends' property in another configuration file or using the following command:
  *
@@ -7,9 +9,9 @@
  */
 module.exports = {
 	remove: [
+		namespace,
 		'babel',
 		'browserslist',
-		'clean-package',
 		'eslintConfig',
 		'jest',
 		'lint-staged', // https://github.com/okonet/lint-staged

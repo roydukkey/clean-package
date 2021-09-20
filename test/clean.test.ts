@@ -7,7 +7,7 @@ import { resolve } from 'path';
 import { clean as srcClean } from '../src/clean';
 import { load as srcLoad } from '../src/load';
 import { copyFileSync, existsSync, readFileSync, rmSync } from 'fs';
-import { clean as distClean, load as distLoad } from 'clean-package';
+import { clean as distClean, load as distLoad } from '../dist/main';
 
 
 const group = 'clean';
