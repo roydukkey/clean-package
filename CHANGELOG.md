@@ -1,9 +1,9 @@
 # Changelog
 
 [//]: # (>>   The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings   <<)
-[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v1.0.1...master   <<)
+[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v2.0.0...master   <<)
 
-## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v1.0.1...master)
+## [2.0.0](https://github.com/roydukkey/clean-package/compare/v1.0.1...2.0.0)
 
 * Complete rewrite in TypeScript, adding unit tests [#13](https://github.com/roydukkey/clean-package/pull/13)
 * Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
