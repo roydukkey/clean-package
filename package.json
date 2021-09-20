@@ -79,7 +79,7 @@
 	},
 	"clean-package": {
 		"indent": "\t",
-		"extends": "common",
+		"extends": "../common",
 		"remove": [
 			"config.main",
 			"config.cli",

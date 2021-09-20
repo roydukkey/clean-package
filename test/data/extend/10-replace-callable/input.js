@@ -1,3 +1,6 @@
+import { resolve } from 'path';
+
+
 module.exports = [
-	'./1.js'
+	resolve(process.cwd(), './1.js')
 ];

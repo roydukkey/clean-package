@@ -2,9 +2,8 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import type { CompiledConfig } from '../spec';
 import { merge } from './merge';
-import { requireFile } from '../util/require';
+import type { CompiledConfig, Config } from '../spec';
 
 
 export const extend = (extensions: string | string[]): ExtendedConfig => {
@@ -15,7 +14,7 @@ export const extend = (extensions: string | string[]): ExtendedConfig => {
 	}
 
 	return extensions.map((extension) => {
-		let config = requireFile(extension);
+		let config = require(extension) as Partial<Config>;
 
 		// Handling inner extensions
 		if (config.extends) {

@@ -1,6 +1,0 @@
-{
-	"extends": [
-		"./2.json"
-	],
-	"backupPath": "./6-second-level.bak"
-}
