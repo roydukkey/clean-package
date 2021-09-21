@@ -93,13 +93,13 @@ A `String` or `Number` defining the indentation that's used to format the cleane
 
 ##### remove
 
-A `String[]` specifying the keys to be removed from the cleaned `package.json`; otherwise, `null` when nothing is to be removed.
+A `String[]` or `( keys: String[] ) => String[]` specifying the keys to be removed from the cleaned `package.json`; otherwise, `null` when nothing is to be removed.
 
 Deeper keys can be accessed using a dot (e.g., `'key.keyInsideKey'`). Likewise, arrays are accessible using brackets (e.g., `'key.arrKey[0]'`).
 
 ##### replace
 
-An `Object` specifying the keys to be replaced in the cleaned `package.json`; otherwise, `null` when nothing is to be replaced.
+An `Object` or `( pairs: Object ) => Object` specifying the keys to be replaced in the cleaned `package.json`; otherwise, `null` when nothing is to be replaced.
 
 Deeper keys and arrays are accessible in the same manner. Additionally, the replaced keys may receive any valid JSON value, including objects.
 
