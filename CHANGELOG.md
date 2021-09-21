@@ -1,7 +1,12 @@
 # Changelog
 
 [//]: # (>>   The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings   <<)
-[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v2.0.0...master   <<)
+[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v2.0.1...master   <<)
+
+## [2.0.1](https://github.com/roydukkey/clean-package/compare/v2.0.0...2.0.1)
+
+* Fix documentation for changed default value of the `remove` option.
+* Add documentation for function types of the `remove` and `replace` options.
 
 ## [2.0.0](https://github.com/roydukkey/clean-package/compare/v1.0.1...2.0.0)
 
