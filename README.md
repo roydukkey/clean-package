@@ -93,8 +93,6 @@ A `String` or `Number` defining the indentation that's used to format the cleane
 
 ##### remove
 
-Default: `['clean-package']`
-
 A `String[]` specifying the keys to be removed from the cleaned `package.json`; otherwise, `null` when nothing is to be removed.
 
 Deeper keys can be accessed using a dot (e.g., `'key.keyInsideKey'`). Likewise, arrays are accessible using brackets (e.g., `'key.arrKey[0]'`).
