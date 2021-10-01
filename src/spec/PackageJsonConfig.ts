@@ -3,9 +3,9 @@
 // ================================================================= //
 
 import type { JsonDocument } from './Json';
-import type { Config, NonCallableConfigSets } from './Config';
+import type { Config, LifecycleEvents, MutationSets, NonCallableMutationSets } from './Config';
 
 
 export interface PackageJsonConfig extends JsonDocument {
-	'clean-package': string | Partial<Omit<Config, 'remove' | 'replace'> & NonCallableConfigSets>;
+	'clean-package': string | Partial<Omit<Config, MutationSets | LifecycleEvents> & NonCallableMutationSets>;
 }

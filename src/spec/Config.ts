@@ -39,13 +39,29 @@ export interface Config {
 	 */
 	replace?: ReplaceMap | ReplaceFunction;
 
+	/**
+	 * A callback to notify after the `package.json` has been cleaned, supplied with an indication as to whether there were changes and the compiled configuration.
+	 */
+	onClean?: (hasChanged: boolean, config: CompiledConfig) => void;
+
+	/**
+	 * A callback to notify after the `package.json` has been restored, supplied with an indication as to whether there were changes and the compiled configuration.
+	 */
+	onRestore?: (hasChanged: boolean, config: CompiledConfig) => void;
+
 }
 
 
-export type CompiledConfig = Required<Pick<CliOptions, 'sourcePath'> & Omit<Config, 'extends' | 'remove' | 'replace'> & NonCallableConfigSets>;
+export type CompiledConfig = Required<Pick<CliOptions, 'sourcePath'> & Omit<Config, 'extends' | MutationSets | LifecycleEvents> & NonCallableMutationSets> & Pick<Config, LifecycleEvents>;
 
 
-export interface NonCallableConfigSets {
+export type LifecycleEvents = 'onClean' | 'onRestore';
+
+
+export type MutationSets = 'remove' | 'replace';
+
+
+export interface NonCallableMutationSets {
 	remove: Exclude<Config['remove'], RemoveFunction | undefined>;
 	replace: Exclude<Config['replace'], ReplaceFunction | undefined>;
 }
