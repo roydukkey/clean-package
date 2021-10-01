@@ -153,11 +153,11 @@ where <option> is one of:
 
   -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file.
 
-       --remove-add <key>...             Same as --remove without overriding configuration from file.
+       --remove-add <key>...            Same as --remove without overriding configuration from file.
 
   -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
 
-       --replace-add <key>=<value>...    Same as --replace without overriding configuration from file.
+       --replace-add <key>=<value>...   Same as --replace without overriding configuration from file.
 
        --print-config                   Print the combined configuration without executing command.
 
