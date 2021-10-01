@@ -54,7 +54,7 @@ else {
 	const [source, config] = load(options?.sourcePath, options?.config ?? optionsTransform);
 
 	if ('restore' === command) {
-		restore(config.sourcePath, config.backupPath);
+		restore(config);
 	}
 
 	else if ('show-config' === command) {

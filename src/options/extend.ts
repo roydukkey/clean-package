@@ -3,7 +3,7 @@
 // ================================================================= //
 
 import { merge } from './merge';
-import type { CompiledConfig, Config } from '../spec';
+import type { CompiledConfig, Config, LifecycleEvents, MutationSets } from '../spec';
 
 
 export const extend = (extensions: string | string[]): ExtendedConfig => {
@@ -28,4 +28,4 @@ export const extend = (extensions: string | string[]): ExtendedConfig => {
 };
 
 
-export type ExtendedConfig = Partial<Pick<CompiledConfig, 'backupPath' | 'indent'>> & Pick<CompiledConfig, 'remove' | 'replace'>;
+export type ExtendedConfig = Partial<Pick<CompiledConfig, 'backupPath' | 'indent'>> & Pick<CompiledConfig, MutationSets | LifecycleEvents>;

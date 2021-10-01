@@ -9,13 +9,18 @@ import { existsSync, renameSync } from 'fs';
 /**
  * Restores the backed up file.
  *
- * @param sourcePath - The original path of the backed up file.
- * @param backupPath - The path to the backup file.
+ * @param config - The configuration that specifies how the JSON document should be restored.
  */
-export const restore = (sourcePath: CompiledConfig['sourcePath'], backupPath: CompiledConfig['backupPath']): void => {
+export const restore = (config: CompiledConfig): void => {
 
-	if (existsSync(backupPath)) {
-		renameSync(backupPath, sourcePath);
+	const exists = existsSync(config.backupPath);
+
+	if (exists) {
+		renameSync(config.backupPath, config.sourcePath);
+	}
+
+	if (config.onRestore) {
+		config.onRestore(exists, config);
 	}
 
 };

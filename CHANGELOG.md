@@ -3,6 +3,11 @@
 [//]: # (>>   The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings   <<)
 [//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v2.0.1...master   <<)
 
+## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.0.1...master)
+
+* Add `onClean` and `onRestore` events
+* Update README options for readability
+
 ## [2.0.1](https://github.com/roydukkey/clean-package/compare/v2.0.0...2.0.1)
 
 * Fix documentation for changed default value of the `remove` option.

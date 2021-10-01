@@ -7,7 +7,7 @@ import type { ExtendedConfig } from './extend';
 import { distinctArray } from '../util/array';
 
 
-export const merge = (child: Partial<Config>, { remove, replace, ...parent }: ExtendedConfig): ExtendedConfig => {
+export const merge = ({ onClean: childOnClean, onRestore: childOnRestore, ...child }: Partial<Config>, { remove, replace, onClean, onRestore, ...parent }: ExtendedConfig): ExtendedConfig => {
 	const extendedConfig: ExtendedConfig = { remove, replace };
 
 	// Merge incoming 'backupPath'
@@ -40,6 +40,26 @@ export const merge = (child: Partial<Config>, { remove, replace, ...parent }: Ex
 	}
 	else if (child.replace) {
 		extendedConfig.replace = { ...replace, ...child.replace };
+	}
+
+	// Merge incoming `onClean`
+	if (childOnClean) {
+		extendedConfig.onClean = onClean
+			? (hasChanged, config): void => (onClean(hasChanged, config), childOnClean(hasChanged, config))
+			: childOnClean;
+	}
+	else if (onClean) {
+		extendedConfig.onClean = onClean;
+	}
+
+	// Merge incoming `onRestore`
+	if (childOnRestore) {
+		extendedConfig.onRestore = onRestore
+			? (hasChanged, config): void => (onRestore(hasChanged, config), childOnRestore(hasChanged, config))
+			: childOnRestore;
+	}
+	else if (onRestore) {
+		extendedConfig.onRestore = onRestore;
 	}
 
 	return extendedConfig;

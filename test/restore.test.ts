@@ -18,6 +18,12 @@ const packages = configurePackages(
 packages.forEach(([name, restore]) => {
 	describe(`'${name}' Package`, () => {
 
+		const baseConfig = {
+			indent: 2,
+			remove: [],
+			replace: {}
+		};
+
 		beforeEach(() => {
 			jest.resetModules();
 		});
@@ -31,18 +37,21 @@ packages.forEach(([name, restore]) => {
 			test('Does not fail for missing backup', () => {
 				alterWorkingDirectory(group, '1-default');
 
-				const sourcePath = resolvePath('./package.json.clean.json');
-				const backupPath = resolvePath('./xxx.json');
+				const config = {
+					...baseConfig,
+					sourcePath: resolvePath('./package.json.clean.json'),
+					backupPath: resolvePath('./xxx.json')
+				};
 
-				restore(sourcePath, backupPath);
+				restore(config);
 
 				// Backed up file does not exist
-				let resulted: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(config.backupPath);
 				let expected: unknown = false;
 				expect(resulted).toEqual(expected);
 
 				// Restored file does not  exist
-				resulted = existsSync(sourcePath);
+				resulted = existsSync(config.sourcePath);
 				expected = false;
 				expect(resulted).toEqual(expected);
 			});
@@ -50,23 +59,51 @@ packages.forEach(([name, restore]) => {
 			test('Restores backup', () => {
 				alterWorkingDirectory(group, '1-default');
 
-				const sourcePath = resolvePath('./package.json.clean.json');
-				const backupPath = resolvePath('./backed-up-package.json');
+				const config = {
+					...baseConfig,
+					sourcePath: resolvePath('./package.json.clean.json'),
+					backupPath: resolvePath('./backed-up-package.json')
+				};
 
-				restore(sourcePath, backupPath);
+				restore(config);
 
 				// Backed up file does not exist
-				let resulted: unknown = existsSync(backupPath);
+				let resulted: unknown = existsSync(config.backupPath);
 				let expected: unknown = false;
 				expect(resulted).toEqual(expected);
 
 				// Restored file exists
-				resulted = existsSync(sourcePath);
+				resulted = existsSync(config.sourcePath);
 				expected = true;
 				expect(resulted).toEqual(expected);
 
 				// Restore
-				renameSync(sourcePath, backupPath);
+				renameSync(config.sourcePath, config.backupPath);
+			});
+
+			test('Callback is triggered after package is restored', () => {
+				alterWorkingDirectory(group, '2-restore-callback');
+				const spy = jest.spyOn(console, 'log').mockImplementation();
+
+				const config = {
+					...baseConfig,
+					sourcePath: resolvePath('./package.json'),
+					backupPath: resolvePath('./xxx.json'),
+					onRestore: (hasChanged: boolean, config: unknown): void => console.log('2-restore', hasChanged, config)
+				};
+
+				restore(config);
+
+				const resulted = existsSync(config.sourcePath);
+				const expected = true;
+				expect(resulted).toEqual(expected);
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls).toEqual([
+					['2-restore', false, config]
+				]);
+
+				spy.mockRestore();
 			});
 
 		});

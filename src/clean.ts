@@ -43,4 +43,8 @@ export const clean = (source: JsonDocument, config: CompiledConfig): void => {
 
 	}
 
+	if (config.onClean) {
+		config.onClean(hasChanged, config);
+	}
+
 };
