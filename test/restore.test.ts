@@ -81,6 +81,31 @@ packages.forEach(([name, restore]) => {
 				renameSync(config.sourcePath, config.backupPath);
 			});
 
+			test('Callback is triggered after package is restored', () => {
+				alterWorkingDirectory(group, '2-restore-callback');
+				const spy = jest.spyOn(console, 'log').mockImplementation();
+
+				const config = {
+					...baseConfig,
+					sourcePath: resolvePath('./package.json'),
+					backupPath: resolvePath('./xxx.json'),
+					onRestore: (hasChanged: boolean, config: unknown): void => console.log('2-restore', hasChanged, config)
+				};
+
+				restore(config);
+
+				const resulted = existsSync(config.sourcePath);
+				const expected = true;
+				expect(resulted).toEqual(expected);
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls).toEqual([
+					['2-restore', false, config]
+				]);
+
+				spy.mockRestore();
+			});
+
 		});
 
 	});

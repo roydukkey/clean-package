@@ -108,6 +108,25 @@ packages.forEach(([name, clean, load]) => {
 				expect(resulted).toEqual(expected);
 			});
 
+			test('Callback is triggered after package is cleaned', () => {
+				alterWorkingDirectory(group, '5-clean-callback');
+				const spy = jest.spyOn(console, 'log').mockImplementation();
+
+				const [ sourcePath, config ] = load();
+				clean(sourcePath, config);
+
+				const resulted = existsSync(resolvePath(defaultBackupPath));
+				const expected = false;
+				expect(resulted).toEqual(expected);
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls).toEqual([
+					['5-clean', false, config]
+				]);
+
+				spy.mockRestore();
+			});
+
 		});
 
 	});

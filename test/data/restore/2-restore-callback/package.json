@@ -1,0 +1,4 @@
+{
+	"name": "2-restore-callback",
+	"description": "Mocks the package.json for tests"
+}
