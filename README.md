@@ -79,35 +79,64 @@ module.exports = {
 
 ### Options
 
-##### backupPath
+<dl>
 
-Default: `'./package.json.backup'`
+  <dt>backupPath</dt>
+  <dd>
+    <em>Type:</em> <code>String</code><br />
+    <em>Default:</em> <code>'./package.json.backup'</code>
+  </dd>
+  <dd>Specifies the location and filename to which the <code>package.json</code> will be backed up.</dd>
 
-A `String` specifying the location and filename to which the `package.json` will be backed up.
+  <dt>indent</dt>
+  <dd>
+    <em>Type:</em> <code>String | Number</code><br />
+    <em>Default:</em> <code>2</code>
+  </dd>
+  <dd>
+    Defines the indentation that's used to format the cleaned <code>package.json</code>. See the <code>space</code> parameter of <code>JSON.stringify</code> for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Parameters">more information</a>.
+  </dd>
 
-##### indent
+  <dt>remove</dt>
+  <dd>
+    <em>Type:</em> <code>String[] | (keys: String[]) => String[]</code>
+  </dd>
+  <dd>
+    <p>Specifies the keys to be removed from the cleaned <code>package.json</code>; otherwise, <code>null</code> when nothing is to be removed.</p>
+    <p>Deeper keys can be accessed using a dot (e.g., <code>'key.keyInsideKey'</code>). Likewise, arrays are accessible using brackets (e.g., <code>'key.arrKey[0]'</code>).</p>
+  </dd>
 
-Default: `2`
+  <dt>replace</dt>
+  <dd>
+    <em>Type:</em> <code>Object | (pairs: Object) => Object</code>
+  </dd>
+  <dd>
+    <p>Specifies the keys to be replaced in the cleaned <code>package.json</code>; otherwise, <code>null</code> when nothing is to be replaced.</p>
+    <p>Deeper keys and arrays are accessible in the same manner. Additionally, the replaced keys may receive any valid JSON value, including objects.</p>
+  </dd>
 
-A `String` or `Number` defining the indentation that's used to format the cleaned `package.json`. See the `space` parameter of `JSON.stringify` for [more information](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Parameters).
+  <dt>extends</dt>
+  <dd>
+    <em>Type:</em> <code>String | String[]</code>
+  </dd>
+  <dd>
+    <p>Specifies the name/s of a shareable configuration.</p>
+    <p>This package <a href="https://github.com/roydukkey/clean-package/blob/master/common.js">shares a configuration</a> with common settings that can be extended from <code>clean-package/common</code>.
+  </dd>
 
-##### remove
+  <dt>onClean</dt>
+  <dd>
+    <em>Type:</em> <code>(hasChanged: boolean, config: CompiledConfig) => void</code>
+  </dd>
+  <dd>Notified after the <code>package.json</code> has been cleaned, supplied with an indication as to whether there were changes and the compiled configuration.</dd>
 
-A `String[]` or `( keys: String[] ) => String[]` specifying the keys to be removed from the cleaned `package.json`; otherwise, `null` when nothing is to be removed.
+  <dt>onRestore</dt>
+  <dd>
+    <em>Type:</em> <code>(hasChanged: boolean, config: CompiledConfig) => void</code>
+  </dd>
+  <dd>Notified after the <code>package.json</code> has been restored, supplied with an indication as to whether there were changes and the compiled configuration.</dd>
 
-Deeper keys can be accessed using a dot (e.g., `'key.keyInsideKey'`). Likewise, arrays are accessible using brackets (e.g., `'key.arrKey[0]'`).
-
-##### replace
-
-An `Object` or `( pairs: Object ) => Object` specifying the keys to be replaced in the cleaned `package.json`; otherwise, `null` when nothing is to be replaced.
-
-Deeper keys and arrays are accessible in the same manner. Additionally, the replaced keys may receive any valid JSON value, including objects.
-
-##### extends
-
-A `String` or `String[]` specifying the name/s of a shareable configuration.
-
-This package [shares a configuration](https://github.com/roydukkey/clean-package/blob/master/common.js) with common settings that can be extended from `clean-package/common`.
+</dl>
 
 ## Command Line Usage
 
