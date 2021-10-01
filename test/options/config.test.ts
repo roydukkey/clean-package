@@ -93,6 +93,44 @@ describe('\'src\' Package', () => {
 			expect(resulted).toStrictEqual(expected);
 		});
 
+		test('Compiles with onClean and onRestore', () => {
+			alterWorkingDirectory(group, '9-lifecycle-events');
+
+			const resulted = config(resolveSource(sourcePath));
+			const expected = buildExpectation();
+			expect(resulted).toStrictEqual(expected);
+		});
+
+		test('Compiles with multiple onClean and onRestore events', () => {
+			alterWorkingDirectory(group, '10-lifecycle-events-multiple');
+
+			const { onClean, onRestore, ...resulted } = config(resolveSource(sourcePath));
+			const expected = buildExpectation();
+			expect(resulted).toStrictEqual(expected);
+
+			const spy = jest.spyOn(console, 'log').mockImplementation();
+
+			onClean?.(false, { ...resulted });
+
+			expect(spy).toHaveBeenCalledTimes(2);
+			expect(spy.mock.calls).toEqual([
+				['10-clean-1'],
+				['10-clean-2']
+			]);
+
+			spy.mockReset();
+
+			onRestore?.(false, { ...resulted });
+
+			expect(spy).toHaveBeenCalledTimes(2);
+			expect(spy.mock.calls).toEqual([
+				['10-restore-1'],
+				['10-restore-2']
+			]);
+
+			spy.mockRestore();
+		});
+
 	});
 
 });
