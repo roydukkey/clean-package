@@ -28,6 +28,14 @@ The `clean-package` tool works directly on the 'package.json' file, to avoid bre
 }
 ```
 
+When the "prepack" script executes, a backup of the original `package.json` will be created. Ensure this file doesn't make it into your release package.
+
+One way to accomplish this is to add the following to your `.npmignore` file:
+
+```ignore
+*.backup
+```
+
 See [CLI Usage](#command-line-usage 'Command Line Usage') for independent usage instructions.
 
 #### JSON Configuration Files
