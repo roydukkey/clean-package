@@ -5,6 +5,7 @@ module.exports = {
 		'4a'
 	],
 	replace: {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		'4b': {
 			c: 4
 		}

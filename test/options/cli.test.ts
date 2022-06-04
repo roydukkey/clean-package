@@ -381,6 +381,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '--replace', '0020=a'];
 
 				const resulted = getOptions().options?.replace;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { '0020': 'a' };
 				expect(resulted).toEqual(expected);
 			});
@@ -397,6 +398,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '--replace', '123=f', 'great=scott'];
 
 				const resulted = getOptions().options?.replace;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { great: 'scott', 123: 'f' };
 				expect(resulted).toEqual(expected);
 			});
@@ -405,6 +407,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '-r', 'great=scott', '123=f'];
 
 				const resulted = getOptions().options?.replace;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { great: 'scott', 123: 'f' };
 				expect(resulted).toEqual(expected);
 			});
@@ -413,6 +416,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '-r', '0020=00010'];
 
 				const resulted = getOptions().options?.replace;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { '0020': 10 };
 				expect(resulted).toEqual(expected);
 			});
@@ -457,6 +461,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '--replace-add', '0020=a'];
 
 				const resulted = getOptions().options?.replaceAdd;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { '0020': 'a' };
 				expect(resulted).toEqual(expected);
 			});
@@ -465,6 +470,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '--replace-add', '123=f', 'great=scott'];
 
 				const resulted = getOptions().options?.replaceAdd;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { great: 'scott', 123: 'f' };
 				expect(resulted).toEqual(expected);
 			});
@@ -473,6 +479,7 @@ describe('\'src\' Package', () => {
 				process.argv = [...begin, '--replace-add', '0020=00010'];
 
 				const resulted = getOptions().options?.replaceAdd;
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const expected = { '0020': 10 };
 				expect(resulted).toEqual(expected);
 			});

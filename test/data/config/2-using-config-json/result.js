@@ -6,6 +6,7 @@ module.exports = {
 	indent: 2,
 	remove: ['2a'],
 	replace: {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		'2b': 123
 	}
 };

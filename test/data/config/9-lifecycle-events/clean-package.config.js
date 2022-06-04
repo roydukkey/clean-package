@@ -5,6 +5,7 @@ module.exports = {
 		'9a'
 	],
 	replace: {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		'9b': 'abc'
 	},
 	onClean: () => '9-clean',
