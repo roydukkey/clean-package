@@ -3,9 +3,11 @@ import license from 'rollup-plugin-license';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from 'rollup-plugin-ts';
+import type { Plugin, RollupOptions } from 'rollup';
 import { author, config, main, name, repository, version } from './package.json';
 
-const commonPlugins = (subPackage = '') => [
+
+const commonPlugins = (subPackage = ''): Plugin[] => [
 	license({
 		banner: {
 			commentStyle: 'none',
@@ -21,7 +23,7 @@ const commonPlugins = (subPackage = '') => [
 ];
 
 
-export default [
+const rollupConfig: RollupOptions[] = [
 	{
 		input: config.main,
 		external: [
@@ -71,3 +73,6 @@ export default [
 		]
 	}
 ];
+
+
+export default rollupConfig;
