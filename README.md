@@ -207,38 +207,3 @@ Should you desire, it is also possible to interface this package through code. S
 ```ts
 import { load, clean, restore, version } from 'clean-package';
 ```
-
-## Troubleshooting
-
-### How do I remove package scripts and use `clean-package restore`?
-
-If you're integrating `clean-package` into the NPM lifecycle, removing all the `package.json` scripts with `clean-package` will also remove them from the current execution. This is just how NPM works.
-
-For example, this configuration will remove the `postpack` script before it is ever requested by `npm pack` or `npm publish`, thereby effectively removing the event from the executing lifecycle.
-
-```json
-{
-  "scripts": {
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
-  },
-  "clean-package": {
-    "remove": [
-      "clean-package",
-      "scripts"
-    ]
-  }
-}
-```
-
-There are multiple ways to work around this (more than are offered here). One solution might be to manually run the command with `npx clean-package restore`. Another might be to define a custom script that would call `pack` and `clean-package` in sequence:
-
-```json
-{
-  "scripts": {
-    "prepack": "clean-package",
-    "new:pack": "npm pack && clean-package restore",
-    "new:publish": "npm publish && clean-package restore"
-  }
-}
-```
