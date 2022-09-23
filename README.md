@@ -15,12 +15,26 @@ npm install clean-package --save-dev
 
 ## Integrated Usage
 
-The `clean-package` tool works directly on the 'package.json' file, to avoid breaking the NPM lifecycle. This allows you to add a script to the 'package.json' to clean the file during packing.
+The `clean-package` tool works directly on the 'package.json' file, to avoid breaking the NPM lifecycle.
+
+### After Packing
+
+The most start forward way to use `clean-package` is to simply invoke it from a "postpack" script. The file will be cleaned directly within the packed TGZ archive just after it has been created.
 
 ```json
 {
-  "name": "my-package",
-  "version": "1.0.0",
+  "scripts": {
+    "postpack": "clean-package"
+  }
+}
+```
+
+### Before Packing
+
+However, there are more complex scenarios that require the 'package.json' to be cleaned before packing. This can be done using a "prepack" script and a "postpack" script to restore the original file.
+
+```json
+{
   "scripts": {
     "prepack": "clean-package",
     "postpack": "clean-package restore"
@@ -28,7 +42,7 @@ The `clean-package` tool works directly on the 'package.json' file, to avoid bre
 }
 ```
 
-When the "prepack" script executes, a backup of the original `package.json` will be created. Ensure this file doesn't make it into your release package.
+In this case when the "prepack" script executes, a backup of the original `package.json` will be created. Ensure this file doesn't make it into your release package.
 
 One way to accomplish this is to add the following to your `.npmignore` file:
 
