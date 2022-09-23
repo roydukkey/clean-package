@@ -35,6 +35,14 @@
 			"./dist/cli.js"
 		]
 	},
+	"files": [
+		"/bin",
+		"/dist",
+		"/CHANGELOG.md",
+		"/LICENSE",
+		"/README.md",
+		"/common.js"
+	],
 	"dependencies": {
 		"dot-object": "^2.1.3"
 	},
