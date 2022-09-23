@@ -1,8 +1,9 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import type { CompiledConfig } from './spec';
+import type { JsonObject } from 'type-fest';
 import { isDeepStrictEqual } from 'util';
-import type { CompiledConfig, JsonDocument } from './spec';
 import { delete as dotDelete, pick, str } from 'dot-object';
 import { renameSync, writeFileSync } from 'fs';
 
@@ -13,7 +14,7 @@ import { renameSync, writeFileSync } from 'fs';
  * @param source - The JSON document which should be backed up and cleaned.
  * @param config - The configuration that specifies how the JSON document should be backed up and cleaned.
  */
-export const clean = (source: JsonDocument, config: CompiledConfig): void => {
+export const clean = (source: JsonObject, config: CompiledConfig): void => {
 
 	let hasChanged = false;
 

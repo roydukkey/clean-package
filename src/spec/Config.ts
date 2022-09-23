@@ -2,7 +2,7 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import type { CliOptions } from './CliOptions';
-import type { JsonValue } from './Json';
+import type { JsonObject } from 'type-fest';
 
 
 export interface Config {
@@ -66,9 +66,7 @@ export interface NonCallableMutationSets {
 }
 
 
-export interface ReplaceMap {
-	[key: string]: JsonValue;
-}
+export type ReplaceMap = JsonObject;
 
 
 interface RemoveFunction {

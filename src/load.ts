@@ -1,13 +1,14 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import type { JsonObject } from 'type-fest';
 import { config as compileConfig } from './options/config';
 import { defaults } from './spec';
 import { merge } from './options/merge';
 import { config as packageConfig } from '../package.json';
 import { requireFile } from './util/require';
 import { resolvePath } from './util/path';
-import type { CompiledConfig, Config, JsonDocument, PackageJsonConfig } from './spec';
+import type { CompiledConfig, Config, PackageJsonConfig } from './spec';
 
 
 /**
@@ -16,7 +17,7 @@ import type { CompiledConfig, Config, JsonDocument, PackageJsonConfig } from './
  * @param sourcePath - The path to the source JSON document.
  * @param config - The configuration that extends any configuration defined in the JSON document or other configuration files.
  */
-export const load = (sourcePath: string = defaults.sourcePath, config?: string | Config): [JsonDocument, CompiledConfig] => {
+export const load = (sourcePath: string = defaults.sourcePath, config?: string | Config): [JsonObject, CompiledConfig] => {
 
 	// Require 'package.json'
 	sourcePath = resolvePath(sourcePath);
