@@ -1,9 +1,9 @@
 # Changelog
 
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
-<!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.1...master) -->
+<!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.2...master) -->
 
-## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.1...master)
+## [2.1.2](https://github.com/roydukkey/clean-package/compare/v2.1.1...v2.1.2)
 
 * Add `.cjs` and `.mjs` as additional default config extensions
 
@@ -11,17 +11,17 @@
 
 * Add reminder to README explaining the production and exclusion of the backup file [#15](https://github.com/roydukkey/clean-package/pull/15)
 
-## [2.1.0](https://github.com/roydukkey/clean-package/compare/v2.0.1...2.1.0)
+## [2.1.0](https://github.com/roydukkey/clean-package/compare/v2.0.1...v2.1.0)
 
 * Add `onClean` and `onRestore` events [#14](https://github.com/roydukkey/clean-package/pull/14)
 * Update README options for readability
 
-## [2.0.1](https://github.com/roydukkey/clean-package/compare/v2.0.0...2.0.1)
+## [2.0.1](https://github.com/roydukkey/clean-package/compare/v2.0.0...v2.0.1)
 
 * Fix documentation for changed default value of the `remove` option
 * Add documentation for function types of the `remove` and `replace` options
 
-## [2.0.0](https://github.com/roydukkey/clean-package/compare/v1.0.1...2.0.0)
+## [2.0.0](https://github.com/roydukkey/clean-package/compare/v1.0.1...v2.0.0)
 
 * Complete rewrite in TypeScript, adding unit tests [#13](https://github.com/roydukkey/clean-package/pull/13)
 * Add a second positional argument to allow changing the path to the source `package.json` [#7](https://github.com/roydukkey/clean-package/issues/7)
