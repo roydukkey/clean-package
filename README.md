@@ -73,7 +73,7 @@ Alternatively, you can choose to specify your configuration from within `package
 
 #### JavaScript Configuration File
 
-You can also create the configuration using JavaScript in the `clean-package.config.js` at the root of your project:
+You can also create the configuration using JavaScript in the `clean-package.config.?(c|m)js` at the root of your project:
 
 ```js
 module.exports = {

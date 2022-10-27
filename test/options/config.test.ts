@@ -43,7 +43,23 @@ describe('\'src\' Package', () => {
 		});
 
 		test('Compiles using JS configuration', () => {
-			alterWorkingDirectory(group, '3-using-config-js');
+			alterWorkingDirectory(group, '3a-using-config-js');
+
+			const resulted = config(resolveSource(sourcePath));
+			const expected = buildExpectation();
+			expect(resulted).toStrictEqual(expected);
+		});
+
+		test('Compiles using JS configuration (ESM)', () => {
+			alterWorkingDirectory(group, '3b-using-config-mjs');
+
+			const resulted = config(resolveSource(sourcePath));
+			const expected = buildExpectation();
+			expect(resulted).toStrictEqual(expected);
+		});
+
+		test('Compiles using JS configuration (CommonJS)', () => {
+			alterWorkingDirectory(group, '3c-using-config-cjs');
 
 			const resulted = config(resolveSource(sourcePath));
 			const expected = buildExpectation();

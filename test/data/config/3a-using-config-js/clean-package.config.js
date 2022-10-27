@@ -1,5 +1,5 @@
 module.exports = {
-	backupPath: './3-using-config-js.bak',
+	backupPath: './3a-using-config-js.bak',
 	indent: 3,
 	remove: [
 		'3a'

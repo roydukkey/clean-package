@@ -1,7 +1,11 @@
 # Changelog
 
-[//]: # (>>   The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings   <<)
-[//]: # (>>   ## [UNRELEASED]https://github.com/roydukkey/clean-package/compare/v2.1.1...master   <<)
+<!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
+<!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.1...master) -->
+
+## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.1...master)
+
+* Add `.cjs` and `.mjs` as additional default config extensions
 
 ## [2.1.1](https://github.com/roydukkey/clean-package/compare/v2.1.0...v2.1.1)
 
