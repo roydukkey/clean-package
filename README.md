@@ -112,6 +112,7 @@ module.exports = {
   <dd>
     <p>Specifies the keys to be removed from the cleaned <code>package.json</code>; otherwise, <code>null</code> when nothing is to be removed.</p>
     <p>Deeper keys can be accessed using a dot (e.g., <code>'key.keyInsideKey'</code>). Likewise, arrays are accessible using brackets (e.g., <code>'key.arrKey[0]'</code>).</p>
+    <p>To remove keys that contain a dot, the dot must be escaped. For example, <code>'exports.\\.'</code> will target <code>"exports": { "." }</code></p>
   </dd>
 
   <dt>replace</dt>
@@ -120,7 +121,7 @@ module.exports = {
   </dd>
   <dd>
     <p>Specifies the keys to be replaced in the cleaned <code>package.json</code>; otherwise, <code>null</code> when nothing is to be replaced.</p>
-    <p>Deeper keys and arrays are accessible in the same manner. Additionally, the replaced keys may receive any valid JSON value, including objects.</p>
+    <p>Deeper keys and arrays are accessible in the same manner and allow dot escaping. Additionally, the replaced keys may receive any valid JSON value, including objects.</p>
   </dd>
 
   <dt>extends</dt>

@@ -126,6 +126,34 @@ packages.forEach(([name, clean, load]) => {
 				spy.mockRestore();
 			});
 
+			test('Cleans package for escaped keys', () => {
+				alterWorkingDirectory(group, '6-escaped-keys');
+
+				const [source, config] = load();
+				const backupPath = resolvePath(defaultBackupPath);
+
+				copyFileSync(config.sourcePath, config.sourcePath += '.clean.json');
+
+				clean(source, config);
+
+				// Cleaned file exists
+				let resulted: unknown = existsSync(backupPath);
+				let expected: unknown = true;
+				expect(resulted).toEqual(expected);
+
+				// Source matches backed up file
+				resulted = readFileSync(resolvePath(defaults.sourcePath)).toString();
+				expected = readFileSync(config.backupPath).toString();
+				expect(resulted).toEqual(expected);
+
+				// Cleaned file contents matches expected result
+				resulted = readFileSync(config.sourcePath).toString();
+				expected = readFileSync(resolvePath('./result.txt')).toString();
+				expect(resulted).toEqual(expected);
+
+				cleanUpTest(config.sourcePath, config.backupPath);
+			});
+
 		});
 
 	});

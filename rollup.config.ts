@@ -30,7 +30,7 @@ const rollupConfig: RollupOptions[] = [
 	{
 		input: config.main,
 		external: [
-			'dot-object'
+			'dot-prop'
 		],
 		output: {
 			file: main,

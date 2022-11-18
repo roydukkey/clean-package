@@ -3,6 +3,11 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.2...master) -->
 
+## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.2...master)
+
+* Allow dot (`.`) to be escaped (`\\.`) in keys for `remove` and `replace` [#19](https://github.com/roydukkey/clean-package/pull/19)
+* Change internals from `dot-object` to `dot-prop`
+
 ## [2.1.2](https://github.com/roydukkey/clean-package/compare/v2.1.1...v2.1.2)
 
 * Add `.cjs` and `.mjs` as additional default config extensions

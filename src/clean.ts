@@ -3,7 +3,7 @@
 
 import { isDeepStrictEqual } from 'util';
 import type { CompiledConfig, JsonDocument } from './spec';
-import { delete as dotDelete, pick, str } from 'dot-object';
+import { delete as deleteProperty, get as getProperty, set as setProperty } from 'dot-prop';
 import { renameSync, writeFileSync } from 'fs';
 
 
@@ -19,15 +19,15 @@ export const clean = (source: JsonDocument, config: CompiledConfig): void => {
 
 	// Delete keys which are not needed in release package
 	config.remove.forEach((value) => {
-		if (dotDelete(value, source) !== undefined && !hasChanged) {
+		if (deleteProperty(source, value) && !hasChanged) {
 			hasChanged = true;
 		}
 	});
 
 	// Replace keys which should have different content in release package
 	for (const [key, value] of Object.entries(config.replace)) {
-		if (!isDeepStrictEqual(pick(key, source), value)) {
-			str(key, value, source);
+		if (!isDeepStrictEqual(getProperty(source, key), value)) {
+			setProperty(source, key, value);
 			hasChanged = true;
 		}
 	}

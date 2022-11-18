@@ -1,0 +1,20 @@
+{
+	"name": "6-escaped-keys",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/main.umd.cjs"
+		},
+		"./src/main.ts": "./src/main.ts"
+	},
+	"clean-package": {
+		"indent": "\t",
+		"remove": [
+			"clean-package",
+			"exports.\\./src/main\\.ts"
+		],
+		"replace": {
+			"exports.\\..import": "./dist/main.js"
+		}
+	}
+}

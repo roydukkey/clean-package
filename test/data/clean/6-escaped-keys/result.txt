@@ -1,0 +1,9 @@
+{
+	"name": "6-escaped-keys",
+	"exports": {
+		".": {
+			"import": "./dist/main.js",
+			"require": "./dist/main.umd.cjs"
+		}
+	}
+}
