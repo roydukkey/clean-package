@@ -27,6 +27,14 @@
 	"bin": "./bin/main.js",
 	"main": "./dist/main.js",
 	"types": "./dist/main.d.ts",
+	"files": [
+		"/bin",
+		"/dist",
+		"/CHANGELOG.md",
+		"/LICENSE",
+		"/README.md",
+		"/common.js"
+	],
 	"config": {
 		"namespace": "clean-package",
 		"main": "./src/index.ts",
