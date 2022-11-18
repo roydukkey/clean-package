@@ -1,9 +1,9 @@
 # Changelog
 
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
-<!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.2...master) -->
+<!-- ## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.2.0...master) -->
 
-## [UNRELEASED](https://github.com/roydukkey/clean-package/compare/v2.1.2...master)
+## [2.2.0](https://github.com/roydukkey/clean-package/compare/v2.1.2...2.2.0)
 
 * Allow dot (`.`) to be escaped (`\\.`) in keys for `remove` and `replace` [#19](https://github.com/roydukkey/clean-package/pull/19)
 * Change from blacklist to whitelist npm packing [#18](https://github.com/roydukkey/clean-package/pull/18)
