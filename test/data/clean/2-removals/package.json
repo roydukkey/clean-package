@@ -1,1 +1,0 @@
-{"name":"2-removals","description":"Mocks the package.json for tests","clean-package":{"indent":"x","remove":["description","clean-package.indent"]}}

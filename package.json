@@ -24,144 +24,37 @@
 		"publish",
 		"clean"
 	],
-	"bin": "./bin/main.js",
-	"main": "./dist/main.js",
-	"types": "./dist/main.d.ts",
+	"type": "module",
+	"engines": {
+		"node": ">=16.0.0"
+	},
+	"exports": "./main.js",
 	"files": [
-		"/bin",
 		"/dist",
 		"/CHANGELOG.md",
 		"/LICENSE",
-		"/README.md",
-		"/common.js"
+		"/README.md"
 	],
-	"config": {
-		"namespace": "clean-package",
-		"main": "./src/index.ts",
-		"cli": [
-			"./src/bin.ts",
-			"./dist/cli.js"
-		]
-	},
 	"dependencies": {
 		"dot-prop": "^6.0.1"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.18.2",
-		"@babel/plugin-transform-runtime": "^7.18.2",
-		"@babel/preset-env": "^7.18.2",
-		"@babel/preset-typescript": "^7.15.0",
-		"@rollup/plugin-json": "^4.1.0",
-		"@rollup/plugin-node-resolve": "^13.0.4",
-		"@rollup/plugin-replace": "^3.0.0",
-		"@roydukkey/eslint-config": "^1.0.12",
-		"@types/jest": "^27.0.1",
-		"@types/node": "^16.7.9",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"babel-jest": "^27.1.0",
-		"cspell": "^5.9.0",
-		"eslint": "^7.32.0",
-		"eslint-plugin-tsdoc": "^0.2.16",
-		"jest": "^27.1.0",
-		"rollup": "^2.56.3",
-		"rollup-plugin-license": "^2.5.0",
-		"rollup-plugin-ts": "^3.0.1",
-		"terser": "^5.7.2",
-		"typescript": "^4.4.2",
-		"yarpm": "^1.1.1"
+		"@roydukkey/eslint-config": "^2.0.4",
+		"@tsconfig/node16-strictest-esm": "^1.0.3",
+		"@typescript-eslint/eslint-plugin": "^5.43.0",
+		"@typescript-eslint/parser": "^5.43.0",
+		"eslint": "^8.28.0",
+		"eslint-plugin-tsdoc": "^0.2.17",
+		"typescript": "^4.9.3"
 	},
 	"scripts": {
-		"clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
-		"lint": "yarpm run lint:spelling && yarpm run lint:es",
-		"lint:es": "eslint --ext js,ts ./",
-		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
-		"build": "yarpm run clean && rollup --config ./rollup.config.ts --configPlugin rollup-plugin-ts",
-		"minify": "terser $npm_package_main --compress toplevel --mangle toplevel -o $npm_package_main & terser $npm_package_config_cli_1 --compress toplevel --mangle toplevel -o $npm_package_config_cli_1",
-		"test": "jest -i",
-		"test:bin": "node $npm_package_config_cli_1",
-		"test:build": "yarpm run test -- --setupTestFrameworkScriptFile=./test/setup/prepack.ts",
-		"prepack": "yarpm run lint && yarpm run build && yarpm run minify && yarpm run test:build -- --coverage=false --verbose=false && node $npm_package_config_cli_1",
-		"new:pack": "yarpm pack && node $npm_package_config_cli_1 restore",
-		"new:publish": "yarpm publish && node $npm_package_config_cli_1 restore"
-	},
-	"clean-package": {
-		"indent": "\t",
-		"extends": "../common",
-		"remove": [
-			"config.main",
-			"config.cli",
-			"scripts"
-		]
-	},
-	"jest": {
-		"testEnvironment": "node",
-		"verbose": true,
-		"collectCoverage": true,
-		"coverageDirectory": ".jest/coverage",
-		"cacheDirectory": ".jest/cache",
-		"testSequencer": "./test/setup/sequencer.js",
-		"bail": true,
-		"coveragePathIgnorePatterns": [
-			"./test/data",
-			"./test/setup"
-		],
-		"setupFiles": [
-			"./test/setup/default.ts"
-		]
-	},
-	"babel": {
-		"presets": [
-			[
-				"@babel/preset-env",
-				{
-					"targets": {
-						"node": "current"
-					}
-				}
-			],
-			[
-				"@babel/preset-typescript"
-			]
-		],
-		"comments": false
+
 	},
 	"eslintConfig": {
-		"extends": [
-			"@roydukkey/eslint-config"
-		],
+		"root": true,
+    "extends": "@roydukkey/eslint-config",
 		"env": {
-			"node": true
-		},
-		"ignorePatterns": [
-			"dist"
-		],
-		"overrides": [
-			{
-				"files": [
-					"*.js?(x)"
-				],
-				"rules": {
-					"@typescript-eslint/no-require-imports": "off"
-				}
-			},
-			{
-				"files": [
-					"*.ts?(x)"
-				],
-				"rules": {
-					"@typescript-eslint/no-type-alias": "off"
-				}
-			},
-			{
-				"files": [
-					"*.{j,t}s?(x)"
-				],
-				"rules": {
-					"@typescript-eslint/no-require-imports": "off",
-					"@typescript-eslint/no-var-requires": "off"
-				}
-			}
-		]
+				"node": true
+		}
 	}
 }

@@ -1,8 +1,0 @@
-{
-	"name": "3-config",
-	"description": "Mocks the package.json for tests",
-	"clean-package": {
-		"backupPath": "./3-config.bak",
-		"indent": 3
-	}
-}

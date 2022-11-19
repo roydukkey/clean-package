@@ -1,9 +1,0 @@
-{
-x"name": "7-clean",
-x"clean-package": {
-xx"remove": [
-xxx"description",
-xxx"clean-package.indent"
-xx]
-x}
-}
