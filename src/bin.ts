@@ -11,19 +11,22 @@ import { dirname, join } from 'node:path';
 
 
 const { name } = await loadPackageJson();
+const program = yargs(hideBin(process.argv));
 
 
-function commonBuilder (yargs: Argv, command: string, options: { [key: string]: Options }): Argv {
-	return yargs
+function commonBuilder (program: Argv, command: string, options: { [key: string]: Options }): Argv {
+	return program
 		.usage(['Usage: $0', command, '[[<source-path>] <backup-path>] [options...]'].filter(Boolean).join(' '))
 		.positional('source-path', {
 			describe: 'The path and filename to the package.json file that will be modified',
 			type: 'string',
+			default: './package.json',
 			normalize: true
 		})
 		.positional('backup-path', {
 			describe: 'The path and filename to which the <source-path> will be backed up',
 			type: 'string',
+			default: './package.json.backup',
 			normalize: true
 		})
 		.options({
@@ -52,19 +55,19 @@ function commonBuilder (yargs: Argv, command: string, options: { [key: string]: 
 }
 
 
-await yargs(hideBin(process.argv))
-	.wrap(105)
+await program
+	.wrap(Math.min(130, program.terminalWidth()))
 	.scriptName(name)
 
 	.command({
 		command: '$0',
 		describe: '',
-		builder: (yargs) =>
-			commonBuilder(yargs, '', {
+		builder: (program) =>
+			commonBuilder(program, '', {
 				indent: {
 					describe: 'Change the indentation used in the cleaned file',
 					alias: 'i',
-					type: 'string'
+					default: 2
 				},
 				remove: {
 					describe: 'Specify the keys to remove, overriding configuration from file',
@@ -100,8 +103,8 @@ await yargs(hideBin(process.argv))
 		command: 'restore',
 		aliases: 'r',
 		describe: '',
-		builder: (yargs) =>
-			commonBuilder(yargs, 'restore', {})
+		builder: (program) =>
+			commonBuilder(program, 'restore', {})
 		,
 		handler: (args) => {
 			console.log('Restore>>>', args);
