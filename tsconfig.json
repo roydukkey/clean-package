@@ -1,10 +1,19 @@
 {
 	"extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
 	"files": [
-		"./src/main.ts"
+		"./src/bin.ts"
 	],
 	"compilerOptions": {
 		"baseUrl": "./src",
 		"outDir": "./dist",
+		"module": "node16",
+		"moduleResolution": "node16",
+		"moduleDetection": "force",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ES2021"
+		],
+		"removeComments": true
 	}
 }

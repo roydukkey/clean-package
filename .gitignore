@@ -1,22 +1,29 @@
-# User-specific files
-.DS_Store
-*.env
-*.user
-*.vs
-
-# Package Managers
+# Dependency Management
 node_modules
 npm-debug.log
 
 # Build Artifacts
+dist
+*.lock
 *.lock.json
 *-lock.json
-*.lock
-*.backup
+*-lock.yaml
 *.cache
 *.jest
 *.tgz
-dist
+
+# IDEs and Editors
+.vscode/*
+!.vscode/cspell.json
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# User-specific files
+.DS_Store
+*.backup
+*.local
+*.user
+*.vs
 
 # Test Artifacts
 *.clean.json

@@ -10,5 +10,5 @@ trim_trailing_whitespace = true
 end_of_line = lf
 insert_final_newline = true
 
-[*.md]
+[*.{md,mdx}]
 indent_style = space

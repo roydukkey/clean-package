@@ -2,7 +2,9 @@
 	"files.exclude": {
 		"**/node_modules": true,
 		".jest": true,
-		"package-lock.json": true,
-		"yarn.lock": true
+		"pnpm-lock.yaml": true
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
 	}
 }
