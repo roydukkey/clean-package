@@ -12,6 +12,7 @@
 	// Before adding a words, see if there is already a dictionary in which it is contained: `npx cspell trace '{{WORD}}'`
 	"words": [
 		"npmignore",
+		"positionals",
 		"postpack",
 		"preinstall",
 		"roydukkey",

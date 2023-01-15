@@ -150,41 +150,55 @@ module.exports = {
 ## Command Line Usage
 
 ```
-clean-package [<source-path>] [<backup-path>] [<option>...]
+clean-package [<source-path>] [<backup-path>] [options...]
 
-where <option> is one of:
+Positionals:
+  source-path                           The path and filename to the package.json file that will be modified
+  backup-path                           The path and filename to which the <source-path> will be backed up
 
-  -c,  --config <path>                  Specify the path to a configuration file.
+Options:
 
-  -e,  --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
+  -c,  --config <path>                  Change path to the configuration file
 
-  -i,  --indent <value>                 Specify the indentation, overriding configuration from file.
+  -e,  --extends <name>...              The name to a shareable configuration (e.g. 'clean-package/common')
 
-  -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file.
+  -i,  --indent <value>                 Change the indentation used in the cleaned file
 
-       --remove-add <key>...            Same as --remove without overriding configuration from file.
+  -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file
 
-  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file.
+       --remove-add <key>...            Specify the keys to remove, without overriding configuration from file
 
-       --replace-add <key>=<value>...   Same as --replace without overriding configuration from file.
+  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file
 
-       --print-config                   Print the combined configuration without executing command.
+       --replace-add <key>=<value>...   Specify the keys to replace, without overriding configuration from file
+
+       --print-config                   Print the combined configuration without executing command
+
+       --help                           Show help
 
   -v,  --version                        Print the version number
 ```
 
 ```
-clean-package restore [<source-path>] [<backup-path>] [<option>...]
+clean-package restore [<source-path>] [<backup-path>] [options...]
+
+Positionals:
+  source-path                           The path and filename to the package.json file that will be modified
+  backup-path                           The path and filename to which the <source-path> will be backed up
 
 alias: r
 
-where <option> is one of:
+Options:
 
-  -c,  --config <path>                  Specify the path to a configuration file.
+  -c,  --config <path>                  Change path to the configuration file
 
-  -e,  --extends <name>...              Specify the name to a shareable configuration. (e.g. 'clean-package/common')
+  -e,  --extends <name>...              The name to a shareable configuration (e.g. 'clean-package/common')
 
-       --print-config                   Print the combined configuration without executing command.
+       --print-config                   Print the combined configuration without executing command
+
+       --help                           Show help
+
+  -v,  --version                        Print the version number
 ```
 
 ## Usage in Code
