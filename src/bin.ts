@@ -1,14 +1,13 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import { coerce } from './options/cli.js';
 import defaults from './spec/Defaults.js';
 import { hideBin } from 'yargs/helpers';
 import scriptName from './spec/ScriptName.js';
 import yargs from 'yargs';
 
-import type { CliReplaceMap } from './spec/CliOptions.js';
 import type { Argv, Options } from 'yargs';
-import type { Entries, Entry } from 'type-fest';
 
 
 const program = yargs(hideBin(process.argv));
@@ -82,12 +81,13 @@ await program
 					alias: 'r',
 					type: 'string',
 					array: true,
-					coerce: coerceKeyValue
+					coerce
 				},
 				'replace-add': {
 					describe: 'Specify the keys to replace, without overriding configuration from file',
 					type: 'string',
-					array: true
+					array: true,
+					coerce
 				}
 			})
 		,
@@ -108,25 +108,3 @@ await program
 		}
 	})
 	.parse();
-
-
-function coerceKeyValue (pairs: string[]): CliReplaceMap {
-	const entries = pairs.reduce<Entries<CliReplaceMap>>((accumulator, pair) => {
-		if (pair.includes('=')) {
-			const [key, value] = pair.split('=', 2) as Entry<CliReplaceMap>;
-
-			accumulator.push([
-				key,
-				Number(value) || (
-					value === 'true' ? true :
-					value === 'false' ? false :
-					value === 'null' ? null :
-					value
-				)
-			]);
-		}
-		return accumulator;
-	}, []);
-
-	return Object.fromEntries(entries);
-}
