@@ -5,6 +5,8 @@ import defaults from './spec/Defaults.js';
 import { hideBin } from 'yargs/helpers';
 import scriptName from './spec/ScriptName.js';
 import yargs from 'yargs';
+
+import type { CliReplaceMap } from './spec/CliOptions.js';
 import type { Argv, Options } from 'yargs';
 import type { Entries, Entry } from 'type-fest';
 
@@ -108,15 +110,10 @@ await program
 	.parse();
 
 
-// Move out to spec
-interface Temp {
-	[key: string]: string | number | boolean | null;
-}
-
-function coerceKeyValue (pairs: string[]): Temp {
-	const entries = pairs.reduce<Entries<Temp>>((accumulator, pair) => {
+function coerceKeyValue (pairs: string[]): CliReplaceMap {
+	const entries = pairs.reduce<Entries<CliReplaceMap>>((accumulator, pair) => {
 		if (pair.includes('=')) {
-			const [key, value] = pair.split('=', 2) as Entry<Temp>;
+			const [key, value] = pair.split('=', 2) as Entry<CliReplaceMap>;
 
 			accumulator.push([
 				key,
