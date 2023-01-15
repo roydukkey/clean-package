@@ -1,6 +1,7 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import defaults from './spec/Defaults.js';
 import { hideBin } from 'yargs/helpers';
 import scriptName from './spec/ScriptName.js';
 import yargs from 'yargs';
@@ -16,12 +17,12 @@ function commonBuilder (program: Argv, command: string, options: { [key: string]
 		.usage(['Usage: $0', command, '[[<source-path>] <backup-path>] [options...]'].filter(Boolean).join(' '))
 		.positional('source-path', {
 			describe: 'The path and filename to the package.json file that will be modified',
-			default: './package.json',
+			default: defaults.sourcePath,
 			normalize: true
 		})
 		.positional('backup-path', {
 			describe: 'The path and filename to which the <source-path> will be backed up',
-			default: './package.json.backup',
+			default: defaults.backupPath(defaults.sourcePath),
 			normalize: true
 		})
 		.options({
@@ -61,7 +62,7 @@ await program
 				indent: {
 					describe: 'Change the indentation used in the cleaned file',
 					alias: 'i',
-					default: 2
+					default: defaults.indent
 				},
 				remove: {
 					describe: 'Specify the keys to remove, overriding configuration from file',
