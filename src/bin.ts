@@ -14,7 +14,7 @@ const program = yargs(hideBin(process.argv));
 
 function commonBuilder (program: Argv, command: string, options: { [key: string]: Options }): Argv {
 	return program
-		.usage(['Usage: $0', command, '[[<source-path>] <backup-path>] [options...]'].filter(Boolean).join(' '))
+		.usage(['Usage: $0', command, '[<source-path>] [<backup-path>] [options...]'].filter(Boolean).join(' '))
 		.positional('source-path', {
 			describe: 'The path and filename to the package.json file that will be modified',
 			default: defaults.sourcePath,
