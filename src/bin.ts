@@ -1,16 +1,13 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-import { fileURLToPath } from 'node:url';
 import { hideBin } from 'yargs/helpers';
-import { readFile } from 'node:fs/promises';
+import scriptName from './spec/ScriptName.js';
 import yargs from 'yargs';
 import type { Argv, Options } from 'yargs';
-import type { Entries, Entry, PackageJson, SetRequired } from 'type-fest';
-import { dirname, join } from 'node:path';
+import type { Entries, Entry } from 'type-fest';
 
 
-const { name } = await loadPackageJson();
 const program = yargs(hideBin(process.argv));
 
 
@@ -19,25 +16,22 @@ function commonBuilder (program: Argv, command: string, options: { [key: string]
 		.usage(['Usage: $0', command, '[[<source-path>] <backup-path>] [options...]'].filter(Boolean).join(' '))
 		.positional('source-path', {
 			describe: 'The path and filename to the package.json file that will be modified',
-			type: 'string',
 			default: './package.json',
 			normalize: true
 		})
 		.positional('backup-path', {
 			describe: 'The path and filename to which the <source-path> will be backed up',
-			type: 'string',
 			default: './package.json.backup',
 			normalize: true
 		})
 		.options({
 			config: {
-				describe: 'The path to a configuration file',
+				describe: 'Change path to the configuration file',
 				alias: 'c',
-				type: 'string',
 				normalize: true
 			},
 			extends: {
-				describe: `The name to a shareable configuration (e.g. '${name}/common')`,
+				describe: `The name to a shareable configuration (e.g. '${scriptName}/common')`,
 				alias: 'e',
 				type: 'string'
 			},
@@ -57,7 +51,7 @@ function commonBuilder (program: Argv, command: string, options: { [key: string]
 
 await program
 	.wrap(Math.min(130, program.terminalWidth()))
-	.scriptName(name)
+	.scriptName(scriptName)
 
 	.command({
 		command: '$0',
@@ -111,12 +105,6 @@ await program
 		}
 	})
 	.parse();
-
-
-async function loadPackageJson (): Promise<SetRequired<PackageJson, 'name'>> {
-	const path = join(dirname(fileURLToPath(import.meta.url)), '../package.json');
-	return JSON.parse(await readFile(path, 'utf-8')) as SetRequired<PackageJson, 'name'>;
-}
 
 
 // Move out to spec
