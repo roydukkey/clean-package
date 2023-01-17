@@ -13,16 +13,15 @@ import type { Argv, Options } from 'yargs';
 const program = yargs(hideBin(process.argv));
 
 
-function commonBuilder (program: Argv, command: string, options: { [key: string]: Options }): Argv {
+function commandBuilder (program: Argv, options: { [key: string]: Options }): Argv {
 	return program
-		.usage(['Usage: $0', command, '[<source-path>] [<backup-path>] [options...]'].filter(Boolean).join(' '))
 		.positional('source-path', {
 			describe: 'The path and filename to the package.json file that will be modified',
 			default: defaults.sourcePath,
 			normalize: true
 		})
 		.positional('backup-path', {
-			describe: 'The path and filename to which the <source-path> will be backed up',
+			describe: 'The path and filename to which the [source-path] will be backed up',
 			default: defaults.backupPath(defaults.sourcePath),
 			normalize: true
 		})
@@ -56,55 +55,50 @@ await program
 	.scriptName(scriptName)
 
 	.command({
-		command: '$0',
-		describe: '',
-		builder: (program) =>
-			commonBuilder(program, '', {
-				indent: {
-					describe: 'Change the indentation used in the cleaned file',
-					alias: 'i',
-					default: defaults.indent
-				},
-				remove: {
-					describe: 'Specify the keys to remove, overriding configuration from file',
-					alias: 'x',
-					type: 'string',
-					array: true
-				},
-				'remove-add': {
-					describe: 'Specify the keys to remove, without overriding configuration from file',
-					type: 'string',
-					array: true
-				},
-				replace: {
-					describe: 'Specify the keys to replace, overriding configuration from file',
-					alias: 'r',
-					type: 'string',
-					array: true,
-					coerce
-				},
-				'replace-add': {
-					describe: 'Specify the keys to replace, without overriding configuration from file',
-					type: 'string',
-					array: true,
-					coerce
-				}
-			})
-		,
+		command: '$0 [source-path] [backup-path] [options..]',
+		builder: (program) => commandBuilder(program, {
+			indent: {
+				describe: 'Change the indentation used in the cleaned file',
+				alias: 'i',
+				default: defaults.indent
+			},
+			remove: {
+				describe: 'Specify the keys to remove, overriding configuration from file',
+				alias: 'x',
+				type: 'string',
+				array: true
+			},
+			'remove-add': {
+				describe: 'Specify the keys to remove, without overriding configuration from file',
+				type: 'string',
+				array: true
+			},
+			replace: {
+				describe: 'Specify the keys to replace, overriding configuration from file',
+				alias: 'r',
+				type: 'string',
+				array: true,
+				coerce
+			},
+			'replace-add': {
+				describe: 'Specify the keys to replace, without overriding configuration from file',
+				type: 'string',
+				array: true,
+				coerce
+			}
+		}),
 		handler: (args) => {
 			console.log('Clean>>>', args);
 		}
 	})
 
 	.command({
-		command: 'restore',
+		command: 'restore [source-path] [backup-path] [options..]',
 		aliases: 'r',
-		describe: '',
-		builder: (program) =>
-			commonBuilder(program, 'restore', {})
-		,
+		builder: (program) => commandBuilder(program, {}),
 		handler: (args) => {
 			console.log('Restore>>>', args);
 		}
 	})
+
 	.parse();

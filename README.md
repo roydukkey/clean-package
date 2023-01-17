@@ -150,11 +150,11 @@ module.exports = {
 ## Command Line Usage
 
 ```
-clean-package [<source-path>] [<backup-path>] [options...]
+clean-package [source-path] [backup-path] [options..]
 
 Positionals:
   source-path                           The path and filename to the package.json file that will be modified
-  backup-path                           The path and filename to which the <source-path> will be backed up
+  backup-path                           The path and filename to which the [source-path] will be backed up
 
 Options:
 
@@ -180,11 +180,11 @@ Options:
 ```
 
 ```
-clean-package restore [<source-path>] [<backup-path>] [options...]
+clean-package restore [source-path] [backup-path] [options..]
 
 Positionals:
   source-path                           The path and filename to the package.json file that will be modified
-  backup-path                           The path and filename to which the <source-path> will be backed up
+  backup-path                           The path and filename to which the [source-path] will be backed up
 
 alias: r
 
