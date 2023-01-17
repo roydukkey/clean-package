@@ -150,55 +150,59 @@ module.exports = {
 ## Command Line Usage
 
 ```
-clean-package [source-path] [backup-path] [options..]
+clean-package [[source-path] backup-path]
+
+Backs up, cleans, and writes the given JSON document using the specified configuration
 
 Positionals:
-  source-path                           The path and filename to the package.json file that will be modified
-  backup-path                           The path and filename to which the [source-path] will be backed up
+  source-path                          The path and filename to the package.json file that will be modified
+  backup-path                          The path and filename to which the [source-path] will be backed up
 
 Options:
 
-  -c,  --config <path>                  Change path to the configuration file
+  -c, --config <path>                  Change path to the configuration file
 
-  -e,  --extends <name>...              The name to a shareable configuration (e.g. 'clean-package/common')
+  -e, --extends <name>..               Names of a shareable configuration (e.g. 'clean-package/common')
 
-  -i,  --indent <value>                 Change the indentation used in the cleaned file
+  -i, --indent <value>                 Change the indentation used in the cleaned file
 
-  -rm, --remove <key>...                Specify the keys to remove, overriding configuration from file
+  -x, --remove <key>..                 Keys to remove; overrides configuration from file
 
-       --remove-add <key>...            Specify the keys to remove, without overriding configuration from file
+      --remove-add <key>..             Keys to remove; amends configuration from file
 
-  -r,  --replace <key>=<value>...       Specify the keys to replace, overriding configuration from file
+  -r, --replace <key>=<value>..        Key/value pairs where the key will be replaced by the value; overrides configuration from file
 
-       --replace-add <key>=<value>...   Specify the keys to replace, without overriding configuration from file
+      --replace-add <key>=<value>..    Key/value pairs where the key will be replaced by the value; amends configuration from file
 
-       --print-config                   Print the combined configuration without executing command
+      --print-config                   Print the combined configuration without executing command
 
-       --help                           Show help
+      --help                           Show help
 
-  -v,  --version                        Print the version number
+  -v, --version                        Print the version number
 ```
 
 ```
-clean-package restore [source-path] [backup-path] [options..]
+clean-package restore [[source-path] backup-path]
+
+Restores the back up file to the source path
 
 Positionals:
-  source-path                           The path and filename to the package.json file that will be modified
-  backup-path                           The path and filename to which the [source-path] will be backed up
+  source-path                          The path and filename to the package.json file that will be modified
+  backup-path                          The path and filename to which the [source-path] will be backed up
 
 alias: r
 
 Options:
 
-  -c,  --config <path>                  Change path to the configuration file
+  -c, --config <path>                  Change path to the configuration file
 
-  -e,  --extends <name>...              The name to a shareable configuration (e.g. 'clean-package/common')
+  -e, --extends <name>..               Names of a shareable configuration (e.g. 'clean-package/common')
 
-       --print-config                   Print the combined configuration without executing command
+      --print-config                   Print the combined configuration without executing command
 
-       --help                           Show help
+      --help                           Show help
 
-  -v,  --version                        Print the version number
+  -v, --version                        Print the version number
 ```
 
 ## Usage in Code

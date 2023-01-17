@@ -25,3 +25,8 @@ export function coerce (pairs: string[]): CliReplaceMap {
 
 	return Object.fromEntries(entries);
 }
+
+
+// export function combineAdditions () {
+
+// }

@@ -10,13 +10,24 @@ import yargs from 'yargs';
 import type { Argv, Options } from 'yargs';
 
 
+enum Command {
+	Clean = 'clean',
+	Restore = 'restore'
+}
+
+
 const program = yargs(hideBin(process.argv));
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function commandBuilder<T, O extends { [key: string]: Options }> (program: Argv<T>, command: Command, options: O) {
 
-function commandBuilder (program: Argv, options: { [key: string]: Options }): Argv {
 	return program
+		// .usage(['$0', command === Command.Restore ? command : '', '[[source-path] backup-path]'].filter(Boolean).join(' '))
 		.positional('source-path', {
-			describe: 'The path and filename to the package.json file that will be modified',
+			describe: `The path and filename ${command === Command.Clean
+				? 'to the JSON file that will be modified'
+				:	'to which the backed up JSON file will be restored'
+			}`,
 			default: defaults.sourcePath,
 			normalize: true
 		})
@@ -27,7 +38,7 @@ function commandBuilder (program: Argv, options: { [key: string]: Options }): Ar
 		})
 		.options({
 			config: {
-				describe: 'Change path to the configuration file',
+				describe: 'Names of a shareable configuration',
 				alias: 'c',
 				normalize: true
 			},
@@ -55,33 +66,33 @@ await program
 	.scriptName(scriptName)
 
 	.command({
-		command: '$0 [source-path] [backup-path] [options..]',
-		builder: (program) => commandBuilder(program, {
+		command: '$0 [source-path] [backup-path]',
+		builder: (program) => commandBuilder(program, Command.Clean, {
 			indent: {
 				describe: 'Change the indentation used in the cleaned file',
 				alias: 'i',
 				default: defaults.indent
 			},
 			remove: {
-				describe: 'Specify the keys to remove, overriding configuration from file',
+				describe: 'Keys to remove; overrides configuration from file',
 				alias: 'x',
 				type: 'string',
 				array: true
 			},
 			'remove-add': {
-				describe: 'Specify the keys to remove, without overriding configuration from file',
+				describe: 'Keys to remove; amends configuration from file',
 				type: 'string',
 				array: true
 			},
 			replace: {
-				describe: 'Specify the keys to replace, overriding configuration from file',
+				describe: 'Key/value pairs where the key will be replaced by the value; overrides configuration from file',
 				alias: 'r',
 				type: 'string',
 				array: true,
 				coerce
 			},
 			'replace-add': {
-				describe: 'Specify the keys to replace, without overriding configuration from file',
+				describe: 'Key/value pairs where the key will be replaced by the value; amends configuration from file',
 				type: 'string',
 				array: true,
 				coerce
@@ -93,12 +104,18 @@ await program
 	})
 
 	.command({
-		command: 'restore [source-path] [backup-path] [options..]',
+		command: 'restore [source-path] [backup-path]',
 		aliases: 'r',
-		builder: (program) => commandBuilder(program, {}),
+		// Seems there is a typing error with builder receiving positional arguments and options from other command. Asserting to clear them out.
+		builder: (program) => commandBuilder(program as Argv<unknown>, Command.Restore, {}),
 		handler: (args) => {
 			console.log('Restore>>>', args);
 		}
 	})
 
 	.parse();
+
+
+// function correctPositionalArguments () {
+
+// }
