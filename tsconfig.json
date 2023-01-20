@@ -15,7 +15,8 @@
 		"strict": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
-		"removeComments": false
+		"removeComments": false,
+		"isolatedModules": true
 	},
 	"exclude": [
 		"node_modules",

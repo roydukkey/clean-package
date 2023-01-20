@@ -3,8 +3,8 @@
 
 
 export { defaults } from './defaults';
-export { Command } from './Command';
-export { CliOptions } from './CliOptions';
-export { CompiledConfig, Config, LifecycleEvents, MutationSets, ReplaceMap } from './Config';
-export { PackageJsonConfig } from './PackageJsonConfig';
-export { JsonDocument } from './Json';
+export type { Command } from './Command';
+export type { CliOptions } from './CliOptions';
+export type { CompiledConfig, Config, LifecycleEvents, MutationSets, ReplaceMap } from './Config';
+export type { PackageJsonConfig } from './PackageJsonConfig';
+export type { JsonDocument } from './Json';
