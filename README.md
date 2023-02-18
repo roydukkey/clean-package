@@ -187,8 +187,8 @@ clean-package restore [[source-path] backup-path]
 Restores the back up file to the source path
 
 Positionals:
-  source-path                          The path and filename to the package.json file that will be modified
-  backup-path                          The path and filename to which the [source-path] will be backed up
+  source-path                          The path and filename to which the [backup-path] will be restored
+  backup-path                          The path and filename to the package.json file that was previously backed up
 
 alias: r
 
