@@ -1,0 +1,25 @@
+{
+	"name": "7-maintain-value-type",
+	"config": {
+		"string": "1",
+		"number": 1,
+		"boolean": true,
+		"null": null
+	},
+	"peerDependencies": {
+		"dot-prop": "6"
+	},
+	"clean-package": {
+		"indent": "\t",
+		"remove": ["clean-package"],
+		"replace": {
+			"config": {
+				"string": "1",
+				"number": 1,
+				"boolean": true,
+				"null": null
+			},
+			"peerDependencies.clean-package": 2
+		}
+	}
+}
